@@ -7,22 +7,28 @@
     </div>
     <div class="g-in">
       <div class="m-function m-photo">
-        <div class="u-content">
-          <label class="icon"></label>
-          <p class="u-text f-shadow">现场拍照</p>
-        </div>
+        <router-link to="/photo" class="u-link">
+          <div class="u-content">
+              <label class="icon"></label>
+              <p class="u-text f-shadow">现场拍照</p>
+          </div>
+        </router-link>
       </div>
       <div class="m-function m-face">
-        <div class="u-content">
-          <label class="icon"></label>
-          <p class="u-text f-shadow">人脸识别</p>
-        </div>
+        <router-link to="/face" class="u-link">
+          <div class="u-content">
+            <label class="icon"></label>
+            <p class="u-text f-shadow">人脸识别</p>
+          </div>
+        </router-link>
       </div>
       <div class="m-function m-cloud">
-        <div class="u-content">
-          <label class="icon"></label>
-          <p class="u-text f-shadow">云摄影</p>
-        </div>
+        <router-link to="/cloud" class="u-link">
+          <div class="u-content">
+            <label class="icon"></label>
+            <p class="u-text f-shadow">云摄影</p>
+          </div>
+        </router-link>
       </div>
     </div>
   </div>
@@ -96,14 +102,21 @@ export default {
     background-size: 100% auto;
     background-repeat: no-repeat;
     text-align: center;
-    color: white;
     transition: transform 1s;
-    &:before {
-      width: 1px;
+    white-space: nowrap;
+    .u-link {
+      display: block;
+      width: 100%;
       height: 100%;
-      content: '';
-      display: inline-block;
-      vertical-align: middle;
+      position: relative;
+      color: white;
+      &:before {
+        width: 1px;
+        height: 100%;
+        content: '';
+        display: inline-block;
+        vertical-align: middle;
+      }
     }
     .u-content {
       display: inline-block;

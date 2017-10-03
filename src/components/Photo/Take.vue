@@ -1,6 +1,20 @@
 <template>
-  <div class="hello">
-    TakePhoto
+  <div class="c-photo">
+    <div class="u-mask"></div>
+    <div class="g-in">
+      <div class="u-title">
+        <label class="icon"></label><span class="title f-shadow">现场拍照</span>
+      </div>
+      <div class="m-photo">
+        <label class="u-border"></label>
+        <div class="u-inner">
+        </div>
+      </div>
+      <div class="m-btn-group">
+        <router-link to="/index" class="u-back u-btn f-shadow">返回</router-link>
+        <router-link to="/photo/save" class="u-save u-btn f-shadow">保存</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -14,7 +28,109 @@ export default {
   }
 }
 </script>
-
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+.c-photo {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.u-mask {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.6);
+  z-index: 1;
+}
+.g-in {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  .u-title {
+    margin-top: 60px;
+    font-size: 42px;
+    color: white;
+    .icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 74px;
+      height: 60px;
+      background-image: url('../../assets/p3-photo.png');
+      background-size: 100% auto;
+      background-repeat: no-repeat;
+      margin-right: 20px;
+    }
+    .title {
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .m-photo {
+    position: relative;
+    width: 680px;
+    height: 680px;
+    margin: 65px 0 100px 0;
+    .u-inner, .u-border {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0;
+      margin: auto;
+    }
+    .u-border {
+      width: 599px;
+      height: 600px;
+      z-index: 3;
+      background-image: url('../../assets/p3-photo-border.png');
+    }
+    .u-inner {
+      width: 680px;
+      height: 680px;
+      background-color: black;
+    }
+  }
+  .m-btn-group {
+    font-size: 0;
+    .u-btn {
+      display: inline-block;
+      width: 195px;
+      line-height: 83px;
+      text-align: center;
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      font-size: 31px;
+      color: white;
+      transition: transform .8s;
+      &+.u-btn {
+        margin-left: 90px;
+      }
+      &:active {
+        transform: scale(.9);
+      }
+    }
+    .u-back {
+      background-image: url('../../assets/p3-back-btn.png');
+    }
+    .u-save {
+      background-image: url('../../assets/p3-save-btn.png');
+    }
+  }
+}
 </style>
+
+

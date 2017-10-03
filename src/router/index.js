@@ -6,8 +6,8 @@ import Photo from '@/components/Photo/Index'
 import Take from '@/components/Photo/Take'
 import Save from '@/components/Photo/Save'
 import Share from '@/components/Photo/Share'
+import Face from '@/components/Face'
 import Cloud from '@/components/Cloud'
-
 
 Vue.use(Router)
 
@@ -42,6 +42,10 @@ export default new Router({
           component: Share
         }
       ]
+    },
+    {
+      path: '/fade',
+      component: Face
     },
     {
       path: '/cloud',
