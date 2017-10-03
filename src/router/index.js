@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Hello from '@/components/Hello'
 import Launch from '@/components/Launch'
 import Index from '@/components/Index'
 import Photo from '@/components/Photo/Index'
@@ -17,6 +16,10 @@ export default new Router({
     {
       path: '/launch',
       component: Launch
+    },
+    {
+      path: '/',
+      component: Index
     },
     {
       path: '/index',
