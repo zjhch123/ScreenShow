@@ -31,9 +31,7 @@ a, button { cursor: pointer; text-decoration: none; }
 body { position: relative; }
 img[src=""] { opacity: 0; filter: alpha(opacity=0); }
 * { -webkit-tap-highlight-color: transparent; }
-/*input 去掉ie10以上版本的X*/
 ::-ms-clear, ::-ms-reveal { display: none; }
-/*input 去掉chrome选中input时的外边框*/
 input { outline: none; border: 0; }
 html { font-size: 14px; }
 ::-webkit-input-placeholder { color: #aaa; }
