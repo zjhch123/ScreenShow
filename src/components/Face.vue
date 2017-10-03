@@ -1,10 +1,12 @@
 <template>
-  <router-view></router-view>
+  <div class="c-face">
+    face
+  </div>
 </template>
 <script>
-import router from '../../router';
+import router from '../router';
 export default {
-  name: 'Photo',
+  name: 'Face',
   data () {
     return {
       
@@ -15,6 +17,9 @@ export default {
   }
 }
 </script>
+<style scoped lang="scss">
+</style>
+
 
 
 
