@@ -1,34 +1,34 @@
 <template>
-  <div class="c-index">
+  <div class="c-index" :class="isLeave ? 'leave' : ''">
     <div class="u-mask"></div>
     <div class="g-title">
       <p class="u-title">人工智能·终端机</p>
       <p class="u-subtitle">Artificial intelligence</p>
     </div>
-    <div class="g-in">
+    <div class="g-in" :class="init ? 'add' : ''">
       <div class="m-function m-photo">
-        <router-link to="/photo" class="u-link">
+        <a data-to="/photo" class="u-link" v-on:click.capture="fJumpTo">
           <div class="u-content">
               <label class="icon"></label>
               <p class="u-text f-shadow">现场拍照</p>
           </div>
-        </router-link>
+        </a>
       </div>
       <div class="m-function m-face">
-        <router-link to="/face" class="u-link">
+        <a data-to="/face" class="u-link" v-on:click.capture="fJumpTo">
           <div class="u-content">
             <label class="icon"></label>
             <p class="u-text f-shadow">人脸识别</p>
           </div>
-        </router-link>
+        </a>
       </div>
       <div class="m-function m-cloud">
-        <router-link to="/cloud" class="u-link">
+        <a data-to="/cloud" class="u-link" v-on:click.capture="fJumpTo">
           <div class="u-content">
             <label class="icon"></label>
             <p class="u-text f-shadow">云摄影</p>
           </div>
-        </router-link>
+        </a>
       </div>
     </div>
   </div>
@@ -39,11 +39,22 @@ export default {
   name: 'Index',
   data () {
     return {
-      
+      isLeave: false,
+      init: true
+    }
+  },
+  methods: {
+    fJumpTo: function(e) {
+      this.isLeave = true;
+      setTimeout(() => {
+        router.push(e.target.getAttribute('data-to'));
+      }, 1200);
     }
   },
   created: function() {
-    
+    setTimeout(() => {
+      this.init = false;
+    }, 1001);
   }
 }
 </script>
@@ -55,6 +66,15 @@ export default {
   }
   to {
     opacity: 1;
+  }
+}
+.leave {
+  .g-title {
+    opacity: 0;
+  }
+  .g-in {
+    animation: fadeIn 1s reverse;
+    animation-fill-mode: forwards;
   }
 }
 .c-index {
@@ -78,7 +98,8 @@ export default {
   display: block;
   text-align: center;  
   color: white;
-  transform: translate3d(0, 70px, 0) scale(.7) !important;
+  transform: translate3d(0, 70px, 0) scale(.7);
+  transition: opacity .8s;
   text-shadow: 0 0 20px rgba(0,0,0,.6);
   .u-title {
     font-size: 60px;
@@ -95,7 +116,9 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 2;
-  animation: fadeIn 2s;
+  &.add {
+    animation: fadeIn 1s;  
+  }
   .m-function {
     display: block;
     position: absolute;
@@ -121,6 +144,7 @@ export default {
     .u-content {
       display: inline-block;
       vertical-align: middle;
+      pointer-events: none;
       .icon {
         display: block;
         background-size: 100% auto;

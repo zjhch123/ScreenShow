@@ -1,6 +1,5 @@
 <template>
   <div class="c-share">
-    <div class="u-mask"></div>
     <div class="g-in">
       <div class="m-title">
         <p class="u-title f-shadow">保存成功!</p>
@@ -56,16 +55,6 @@ export default {
   height: 100%;
 }
 
-.u-mask {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,.6);
-  z-index: 1;
-}
 .g-in {
   position: absolute;
   top: 0;

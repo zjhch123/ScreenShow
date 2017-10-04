@@ -1,6 +1,5 @@
 <template>
-  <div :class="saved ? 'c-save saved' : 'c-save'">
-    <div class="u-mask"></div>
+  <div class="c-save" :class="saved ? 'saved' : ''">
     <div class="g-in">
       <div class="m-photo">
         <div class="u-border"></div>
@@ -11,13 +10,12 @@
         </div>
       </div>
       <div class="m-btn-group">
-        <router-link to="/photo" class="u-back u-btn f-shadow">重拍</router-link>
-        <a href="javascript:;" class="u-save u-btn f-shadow" v-on:click="savePhoto">保存</a>
+        <a class="u-back u-btn f-shadow" @click="fBack">重拍</a>
+        <a class="u-save u-btn f-shadow" @click="savePhoto">保存</a>
       </div>
     </div>
   </div>
 </template>
-
 <script>
 import router from '../../router/';
 export default {
@@ -30,10 +28,15 @@ export default {
   },
   methods: {
     savePhoto: function() {
-      this.saved = true;
       setTimeout(() => {
-        router.push('/photo/share');
-      }, 3000);
+        this.saved = true;
+        setTimeout(() => {
+          router.push('/photo/share');
+        }, 200);
+      }, 1000);
+    },
+    fBack: function() {
+      router.push('/photo');
     }
   },
   created: function() {
@@ -70,16 +73,6 @@ export default {
       }
     }
   }
-}
-.u-mask {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,.6);
-  z-index: 1;
 }
 .g-in {
   position: absolute;
