@@ -48,13 +48,13 @@ export default {
       this.isLeave = true;
       setTimeout(() => {
         router.push(e.target.getAttribute('data-to'));
-      }, 1200);
+      }, 1000);
     }
   },
   created: function() {
     setTimeout(() => {
       this.init = false;
-    }, 1001);
+    }, 801);
   }
 }
 </script>
@@ -62,7 +62,7 @@ export default {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -73,7 +73,7 @@ export default {
     opacity: 0;
   }
   .g-in {
-    animation: fadeIn 1s reverse;
+    animation: fadeIn .8s reverse;
     animation-fill-mode: forwards;
   }
 }
@@ -117,7 +117,7 @@ export default {
   bottom: 0;
   z-index: 2;
   &.init {
-    animation: fadeIn 1s;  
+    animation: fadeIn .8s;  
   }
   .m-function {
     display: block;
