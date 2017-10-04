@@ -1,6 +1,6 @@
 <template>
-  <div class="c-photo">
-    <div class="u-mask"></div>
+  <div class="c-photo" :class="{back: back}">
+    <div class="u-flash" :class="{take: take}"></div>
     <div class="g-in">
       <div class="u-title">
         <label class="icon"></label><span class="title f-shadow">现场拍照</span>
@@ -12,19 +12,35 @@
         </div>
       </div>
       <div class="m-btn-group">
-        <router-link to="/index" class="u-back u-btn f-shadow">返回</router-link>
-        <router-link to="/photo/save" class="u-save u-btn f-shadow">保存</router-link>
+        <a class="u-back u-btn f-shadow" @click="fBack">返回</a>
+        <a class="u-save u-btn f-shadow" @click="fSave">拍照</a>
       </div>
     </div>
   </div>
 </template>
-
 <script>
+import router from '../../router';
 export default {
   name: 'TakePhoto',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      init: true,
+      back: false,
+      take: false
+    }
+  },
+  methods: {
+    fBack: function() {
+      this.back = true;
+      setTimeout(() => {
+        router.push('/index');
+      }, 1000);
+    },
+    fSave: function() {
+      this.take = true;
+      setTimeout(() => {
+        router.push('/photo/save');
+      }, 500);
     }
   }
 }
@@ -33,26 +49,69 @@ export default {
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    transform: translateY(-30px);
   }
   to {
     opacity: 1;
+  }
+}
+@keyframes nextTo {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes flash {
+  0% {
+    width: 680px;
+    height: 1210px;
+    opacity: 0;
+  }
+  50% {
+    width: 680px;
+    height: 1210px;
+    opacity: 1;
+  }
+  100% {
+    width: 680px;
+    height: 1210px;
+    opacity: 0;
   }
 }
 .c-photo {
   position: relative;
   width: 100%;
   height: 100%;
+  &.back {
+    transition: all .8s;
+    opacity: 0;
+  }
 }
-.u-mask {
-  display: block;
+.u-flash {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 50%;
+  left: 50%;
   right: 0;
   bottom: 0;
-  background-color: rgba(0,0,0,.6);
-  z-index: 1;
+  transform: translate(-50%, -50%);
+  width: 0px;
+  height: 0px;
+  background-color: white;
+  z-index: 999;
+  &.take {
+    animation: flash .4s ease-in;
+  }
 }
 .g-in {
   position: absolute;
@@ -61,6 +120,9 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 2;
+  &.add {
+    animation: fadeIn .8s;
+  }
   .u-title {
     margin-top: 60px;
     font-size: 42px;
@@ -104,6 +166,10 @@ export default {
       height: 680px;
       background-color: black;
       overflow: hidden;
+      img {
+        width: 100%;
+        display: block;
+      }
     }
   }
   .m-btn-group {

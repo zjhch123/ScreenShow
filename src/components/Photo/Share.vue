@@ -1,6 +1,5 @@
 <template>
-  <div class="c-share">
-    <div class="u-mask"></div>
+  <div class="c-share" :class="{init: init, leave: leave}">
     <div class="g-in">
       <div class="m-title">
         <p class="u-title f-shadow">保存成功!</p>
@@ -22,21 +21,35 @@
           <p>立即分享到微信朋友圈</p>
         </div>
       </div>
+      <div class="m-btn-group">
+        <a class="u-back u-btn f-shadow" @click="fBack">返回</a>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from '../../router/';
 export default {
   name: 'TakePhoto',
   data () {
     return {
+      init: true,
+      leave: false
     }
   },
   methods: {
-    
+    fBack: function() {
+      this.leave = true;
+      setTimeout(() => {
+        router.push('/index');
+      }, 2001);
+    }
   },
   created: function() {
+    setTimeout(() => {
+      this.init = false;
+    }, 2001);
   }
 }
 </script>
@@ -55,16 +68,41 @@ export default {
   width: 100%;
   height: 100%;
 }
-
-.u-mask {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,.6);
-  z-index: 1;
+.init {
+  .m-title {
+    animation: fadeIn .8s;
+    animation-fill-mode: both;
+  }
+  .m-photo {
+    animation: fadeIn .8s .4s;
+    animation-fill-mode: both;
+  }
+  .m-func {
+    animation: fadeIn .8s .8s;
+    animation-fill-mode: both;
+  }
+  .m-btn-group {
+    animation: fadeIn .4s 1.2s;
+    animation-fill-mode: both;
+  }
+}
+.leave {
+  .m-title {
+    animation: fadeIn .8s 1s reverse;
+    animation-fill-mode: forwards;
+  }
+  .m-photo {
+    animation: fadeIn .8s .6s reverse;
+    animation-fill-mode: forwards;
+  }
+  .m-func {
+    animation: fadeIn .8s .2s reverse;
+    animation-fill-mode: forwards;
+  }
+  .m-btn-group {
+    animation: fadeIn .4s reverse;
+    animation-fill-mode: forwards;
+  }
 }
 .g-in {
   position: absolute;
@@ -74,10 +112,8 @@ export default {
   bottom: 0;
   z-index: 2;
   .m-title {
-    margin: 125px auto 50px auto;
+    margin: 95px auto 50px auto;
     text-align: center;
-    animation: fadeIn .8s;
-    animation-fill-mode: both;
     .u-title {
       font-size: 52px;
       color: #54faff;
@@ -85,8 +121,6 @@ export default {
     }
   }
   .m-photo {
-    animation: fadeIn .8s .4s;
-    animation-fill-mode: both;
     position: relative;
     width: 470px;
     height: 470px;
@@ -132,8 +166,6 @@ export default {
     }
   }
   .m-func {
-    animation: fadeIn .8s .8s;
-    animation-fill-mode: both;
     margin: auto;
     .u-qr {
       width: 147px;
@@ -141,7 +173,7 @@ export default {
       display: inline-block;
       background-color: white;
       padding: 5px;
-      margin: 50px auto 30px;
+      margin: 50px auto 20px;
       img {
         width: 100%;
         height: 100%;
@@ -169,11 +201,9 @@ export default {
       }
     }
   }
-
-
-
   .m-btn-group {
     font-size: 0;
+    margin-top: 30px;
     .u-btn {
       display: inline-block;
       width: 195px;
@@ -193,9 +223,6 @@ export default {
     }
     .u-back {
       background-image: url('../../assets/p3-back-btn.png');
-    }
-    .u-save {
-      background-image: url('../../assets/p3-save-btn.png');
     }
   }
 }
