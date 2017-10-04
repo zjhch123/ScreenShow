@@ -8,6 +8,7 @@
       <div class="m-photo">
         <label class="u-border"></label>
         <div class="u-inner">
+          <img src="../../assets/temp.png"/>
         </div>
       </div>
       <div class="m-btn-group">
@@ -102,6 +103,7 @@ export default {
       width: 680px;
       height: 680px;
       background-color: black;
+      overflow: hidden;
     }
   }
   .m-btn-group {

@@ -138,7 +138,7 @@ export default {
     width: 254px;
     height: 254px;
     font-size: 31px;
-    right: 30px;
+    right: 50px;
     top: 240px;
     .icon {
       background-image: url('../assets/p1-photo.png');
@@ -153,7 +153,7 @@ export default {
     height: 350px;
     font-size: 34px;
     left: 75px;
-    top: 505px;
+    top: 495px;
     .icon {
       background-image: url('../assets/p1-face.png');
       width: 117px;
