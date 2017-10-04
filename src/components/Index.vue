@@ -1,11 +1,11 @@
 <template>
-  <div class="c-index" :class="isLeave ? 'leave' : ''">
+  <div class="c-index" :class="{leave: isLeave}">
     <div class="u-mask"></div>
     <div class="g-title">
       <p class="u-title">人工智能·终端机</p>
       <p class="u-subtitle">Artificial intelligence</p>
     </div>
-    <div class="g-in" :class="init ? 'add' : ''">
+    <div class="g-in" :class="{init: init}">
       <div class="m-function m-photo">
         <a data-to="/photo" class="u-link" v-on:click.capture="fJumpTo">
           <div class="u-content">
@@ -116,7 +116,7 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 2;
-  &.add {
+  &.init {
     animation: fadeIn 1s;  
   }
   .m-function {

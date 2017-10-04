@@ -1,5 +1,6 @@
 <template>
-  <div class="c-photo" :class="back ? 'back' : ''">
+  <div class="c-photo" :class="{back: back}">
+    <div class="u-flash" :class="{take: take}"></div>
     <div class="g-in">
       <div class="u-title">
         <label class="icon"></label><span class="title f-shadow">现场拍照</span>
@@ -24,7 +25,8 @@ export default {
   data () {
     return {
       init: true,
-      back: false
+      back: false,
+      take: false
     }
   },
   methods: {
@@ -35,7 +37,10 @@ export default {
       }, 1000);
     },
     fSave: function() {
-      router.push('/photo/save');
+      this.take = true;
+      setTimeout(() => {
+        router.push('/photo/save');
+      }, 500);
     }
   }
 }
@@ -67,6 +72,23 @@ export default {
     opacity: 1;
   }
 }
+@keyframes flash {
+  0% {
+    width: 680px;
+    height: 1210px;
+    opacity: 0;
+  }
+  50% {
+    width: 680px;
+    height: 1210px;
+    opacity: 1;
+  }
+  100% {
+    width: 680px;
+    height: 1210px;
+    opacity: 0;
+  }
+}
 .c-photo {
   position: relative;
   width: 100%;
@@ -74,6 +96,21 @@ export default {
   &.back {
     transition: all .8s;
     opacity: 0;
+  }
+}
+.u-flash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: 0;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+  width: 0px;
+  height: 0px;
+  background-color: white;
+  z-index: 999;
+  &.take {
+    animation: flash .4s ease-in;
   }
 }
 .g-in {
@@ -129,6 +166,10 @@ export default {
       height: 680px;
       background-color: black;
       overflow: hidden;
+      img {
+        width: 100%;
+        display: block;
+      }
     }
   }
   .m-btn-group {

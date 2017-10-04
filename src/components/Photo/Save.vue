@@ -1,5 +1,5 @@
 <template>
-  <div class="c-save" :class="saved ? 'saved' : ''">
+  <div class="c-save" :class="{saved: saved}">
     <div class="g-in">
       <div class="m-photo">
         <div class="u-border"></div>

@@ -1,5 +1,5 @@
 <template>
-  <div :class="isLoaded ? 'c-hello launched' : 'c-hello'">
+  <div class="c-hello" :class="{launched: isLoaded}" @click="launch">
     <div class="u-mask"></div>
     <div class="g-title f-shadow">
       <p class="u-title">人工智能·终端机</p>
@@ -10,28 +10,25 @@
     </div>
   </div>
 </template>
-
 <script>
 import router from '../router';
 export default {
-  name: 'hello',
+  name: 'launch',
   data () {
     return {
       isLoaded: false
     }
   },
   methods: {
-    launchFinish: function() {
+    launch: function() {
+      console.log('123')
+      this.isLoaded = true;
       setTimeout(function() {
         router.push('/index');
       }.bind(this), 900);
     }
   },
   created: function() {
-    setTimeout(function() {
-      this.isLoaded = true;
-      this.launchFinish();
-    }.bind(this), 3000);
   }
 }
 </script>
@@ -52,6 +49,10 @@ export default {
   to {
     background-color: rgba(0,0,0,.6);
   }
+}
+.c-hello {
+  height: 100%;
+  width: 100%;
 }
 .launched {
   .u-mask {

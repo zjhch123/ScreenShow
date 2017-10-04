@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="c-photo-index">
     <div class="u-mask"></div>
       <div class="c-photo-container">
         <transition :name="transitionName" mode="out-in">
@@ -41,8 +41,14 @@ export default {
     opacity: 1;
   }
 }
+.c-photo-index {
+  width: 100%;
+  height: 100%;
+}
 .c-photo-container {
   animation: fade .5s;
+  height: 100%;
+  width: 100%;
 }
 .u-mask {
   display: block;
