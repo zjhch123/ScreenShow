@@ -1,26 +1,42 @@
 <template>
-  <div class="c-save">
+  <div :class="saved ? 'c-save saved' : 'c-save'">
     <div class="u-mask"></div>
     <div class="g-in">
       <div class="m-photo">
-        <div class="u-inner">
+        <div class="u-border"></div>
+        <div class="m-container">
+          <div class="u-inner">
+            <img src="../../assets/temp.png"/>
+          </div>
         </div>
       </div>
       <div class="m-btn-group">
         <router-link to="/photo" class="u-back u-btn f-shadow">重拍</router-link>
-        <a href="javascript:;" class="u-save u-btn f-shadow">保存</a>
+        <a href="javascript:;" class="u-save u-btn f-shadow" v-on:click="savePhoto">保存</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import router from '../../router/';
 export default {
   name: 'TakePhoto',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      saved: false
     }
+  },
+  methods: {
+    savePhoto: function() {
+      this.saved = true;
+      setTimeout(() => {
+        router.push('/photo/share');
+      }, 3000);
+    }
+  },
+  created: function() {
   }
 }
 </script>
@@ -38,6 +54,22 @@ export default {
   position: relative;
   width: 100%;
   height: 100%;
+}
+
+.saved {
+  .g-in {
+    .m-photo {
+      .u-border {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,255,0);
+        background-image: linear-gradient(45deg,#21feff,#7e01cd);
+      }
+      .m-container {
+        border: 0px;
+      }
+    }
+  }
 }
 .u-mask {
   display: block;
@@ -58,19 +90,47 @@ export default {
   z-index: 2;
   .m-photo {
     position: relative;
-    width: 610px;
-    height: 1000px;
-    border: 2px solid #0734e8;
-    margin: 40px auto 47px auto;
-    overflow: auto;
-    background-color: black;
-    &::-webkit-scrollbar {
-      display: none;
+    margin: 40px auto 18px auto;
+    width: 624px;
+    height: 1024px;
+    .u-border {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      margin: auto;
+      z-index: 1;
+      background-color: rgba(0,51,255,1);
+      width: 610px;
+      height: 1010px;
+      transition: all .1s;
     }
-    .u-inner {
-      width: 100%;
-      height: 1440px;
-      background: -webkit-gradient(linear, 0 0, 0 bottom, from(#ff0000), to(rgba(0, 0, 255, 0.5)));
+    .m-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      z-index: 2;
+      width: 600px;
+      height: 1000px;
+      box-sizing: border-box;
+      padding: 24px;
+      overflow: auto;
+      margin: auto;
+      background-color: black;
+      transition: all .8s;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      .u-inner {
+        width: 100%;
+        img {
+          display: block;
+          width: 100%;
+        }
+      }
     }
   }
   .m-btn-group {
