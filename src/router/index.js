@@ -44,7 +44,7 @@ export default new Router({
       ]
     },
     {
-      path: '/fade',
+      path: '/face',
       component: Face
     },
     {

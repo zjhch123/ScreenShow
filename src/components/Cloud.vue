@@ -1,20 +1,292 @@
 <template>
-  <div class="hello">
-    Cloud
+  <div class="c-cloud" :class="{back: back}" @click="fBack">
+    <div class="u-mask"></div>
+    <div class="m-back">
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/1.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/2.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/3.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/4.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/5.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/6.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/7.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/8.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/9.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/10.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/1.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/2.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/3.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/4.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+      <div class="u-photo J_photo">
+        <div class="u-front">
+          <img src="../assets/p6temp/5.jpg"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
+    </div>
+    <div class="m-front">
+      <div class="m-content">
+        <div class="u-qr">
+          <img src="../assets/t_qr.png"/>
+        </div>
+        <div class="u-title">
+          <p>扫一扫</p>
+          <p>查看全部云摄影图库</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
-
 <script>
+import router from '../router';
 export default {
   name: 'Cloud',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      back: false,
+      photoInterval: 0
     }
+  },
+  methods: {
+    _getRandom: function(range, count) {
+      let arr = [], ret = [];
+      for (let i = 0; i < range; i++) {
+        arr.push(i);
+      }
+      for (let i = 0; i < count; i++) {
+        const num = Math.floor(Math.random() * arr.length);
+        ret.push(arr.splice(num, 1)[0]);
+      }
+      return ret;
+    },
+    fBack: function() {
+      this.back = true;
+      setTimeout(() => {
+        router.push('/index');
+      }, 1200);
+    }
+  },
+  created: function() {
+    const ROTATE_COUNT = 6;
+    this.photoInterval = setInterval(() => {
+      this._getRandom(15, ROTATE_COUNT).map(function(id) {
+        return document.querySelectorAll('.J_photo')[id]
+      }).forEach(function(ele) {
+        ele.classList.add('rotate');
+        setTimeout(function() {
+          ele.classList.remove('rotate');
+        }, 5000);
+      })
+    }, 5000);
+  },
+  beforeDestroy: function() {
+    clearInterval(this.photoInterval);
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.c-cloud {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.back {
+  .m-front {
+    transition: all .4s;
+    opacity: 0;
+  }
+  .m-back {
+    opacity: 0;
+    transition: all .4s .8s;;
+  }
+}
+.u-mask {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.6);
+  z-index: 0;
+}
+.m-back, .m-front {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.m-back {
+  animation: fadeIn .4s;
+  font-size: 0;
+  padding: 50px 20px;
+  text-align: justify;
+  box-sizing: border-box;
+  pointer-events: none;
+  &:after {
+    width: 100%;
+    height: 1px;
+    content: '';
+    display: inline-block;
+  }
+  .u-photo {
+    margin-bottom: 22px;
+    display: inline-block;
+    width: 201px;
+    height: 201px;
+    backface-visibility: hidden;
+    position: relative;
+    transform-style:preserve-3d;
+    perspective: 1000px;
+    .u-front, .u-back {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      transform-style: preserve-3d;
+    }
+    .u-front {
+      z-index: 2;
+      transition: transform .4s .4s linear;
+      img {
+        position: relative;
+        width: 100%;
+        display: block;
+      }
+    }
+    .u-back {
+      background-color: black;
+      transition: transform .4s linear;
+      transform: rotate3d(1, 0, 0, -90deg);
+      z-index: 1;
+    }
+  }
+  .u-photo {
+    &.rotate {
+      .u-front {
+        transition: transform .4s linear;
+        transform: rotate3d(1, 0, 0, -90deg);
+      }
+      .u-back {
+        transition: transform .4s .4s linear;
+        transform: rotate3d(1, 0, 0, -180deg);
+      }
+    }
+  }
+}
+.m-front {
+  pointer-events: auto;
+  animation: fadeIn .8s 1.6s;
+  animation-fill-mode: backwards;
+  background-color: rgba(0,0,0,.6);
+  &:before {
+    width: 1px;
+    height: 100%;
+    vertical-align: middle;
+    content: '';
+    display: inline-block;
+  }
+  .m-content {
+    display: inline-block;
+    vertical-align: middle;
+    pointer-events: none;
+  }
+  .u-qr {
+    margin-top: 78px;
+    background-color: white;
+    padding: 8px;
+    display: inline-block;
+    img {
+      display: block;
+      width: 185px;
+      height: 185px;
+    }
+  }
+  .u-title {
+    font-size: 31px;
+    color: #3df6ff;
+    font-weight: bold;
+  }
+}
 </style>
