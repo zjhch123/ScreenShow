@@ -32,7 +32,7 @@ export default {
   },
 }
 </script>
-<style>
+<style scoped>
 @keyframes fade {
   from {
     opacity: 0;
