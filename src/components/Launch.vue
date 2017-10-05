@@ -21,7 +21,6 @@ export default {
   },
   methods: {
     launch: function() {
-      console.log('123')
       this.isLoaded = true;
       setTimeout(function() {
         router.push('/index');
