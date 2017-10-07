@@ -8,7 +8,7 @@
       <div class="m-photo">
         <label class="u-border"></label>
         <div class="u-inner">
-          <img class="u-image"/>
+          <img class="J-image"/>
         </div>
       </div>
       <div class="m-btn-group">
@@ -54,7 +54,7 @@ export default {
   },
   mounted: function() {
       let that = this
-      let image = document.querySelector('.u-image')
+      let image = document.querySelector('.J-image')
       image.onload = function() {
         that.pic == true ? that.upload(image.src) : that.socket.send('get_frame')
       }
