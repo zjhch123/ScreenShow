@@ -5,7 +5,7 @@
         <div class="u-border"></div>
         <div class="m-container">
           <div class="u-inner">
-            <img src="../../assets/temp.png"/>
+            <img :src="img"/>
           </div>
         </div>
       </div>
@@ -18,16 +18,31 @@
 </template>
 <script>
 import router from '../../router/';
+import {AjaxUrl} from '../../config';
+
 export default {
   name: 'TakePhoto',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App',
-      saved: false
+      saved: false,
+      img: null
     }
   },
   methods: {
     savePhoto: function() {
+      let that = this
+      fetch(AjaxUrl.upload, {
+        method: 'POST',
+        headers: {
+          "Content-type": "multipartform-data"
+        },
+        body: {
+          file: that.img
+        }
+      }).then((data)=> {
+        console.log(data)
+      })
       setTimeout(() => {
         this.saved = true;
         setTimeout(() => {
@@ -40,7 +55,12 @@ export default {
     }
   },
   created: function() {
+    this.img = localStorage.getItem('img')
+  },
+  destroyed: function() {
+    localStorage.removeItem('img')
   }
+
 }
 </script>
 <style scoped lang="scss">

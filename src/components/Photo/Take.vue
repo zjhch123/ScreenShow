@@ -8,7 +8,7 @@
       <div class="m-photo">
         <label class="u-border"></label>
         <div class="u-inner">
-          <img src="../../assets/temp.png"/>
+          <img class="u-image"/>
         </div>
       </div>
       <div class="m-btn-group">
@@ -26,7 +26,9 @@ export default {
     return {
       init: true,
       back: false,
-      take: false
+      take: false,
+      pic: false,
+      socket: null
     }
   },
   methods: {
@@ -38,11 +40,40 @@ export default {
     },
     fSave: function() {
       this.take = true;
+      this.pic = true;
       setTimeout(() => {
         router.push('/photo/save');
       }, 500);
+    },
+    upload(img) {
+      localStorage.setItem('img',img)
     }
+  },
+  created: function() {
+      this.socket = new WebSocket('ws://192.168.2.120:9998')
+  },
+  mounted: function() {
+      let that = this
+      let image = document.querySelector('.u-image')
+      image.onload = function() {
+        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame')
+      }
+      this.socket.onopen = function(){
+          that.socket.send('get_frame');
+      }
+      this.socket.onmessage = function(data){
+          if(data.data.length<256){
+              console.log(data.data)
+          }
+          else{
+              image.src=data.data;
+          }
+      }
+  },
+  destroyed: function() {
+    this.socket.close()
   }
+  
 }
 </script>
 <style scoped lang="scss">
