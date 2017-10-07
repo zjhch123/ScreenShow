@@ -60,20 +60,25 @@ export default {
     },
     showName: function() {
       let that = this
-      setTimeout(() => {
+      return new Promise((res, rej) => {
         setTimeout(() => {
-          this.setMsg('您好');
-        }, 1000);
-        setTimeout(() => {
-          this.setMsg(that.name);
-        }, 2800);
-        setTimeout(() => {
-          this.setMsg('请入座');
-        }, 6000);
-        setTimeout(() => {
-          this.setMsg('欢迎您');
-        }, 8000);
-      }, 2000);
+          setTimeout(() => {
+            this.setMsg('您好');
+          }, 1000);
+          setTimeout(() => {
+            this.setMsg(that.name);
+          }, 2800);
+          setTimeout(() => {
+            this.setMsg('请入座');
+          }, 6000);
+          setTimeout(() => {
+            this.setMsg('欢迎您');
+          }, 8000);
+          setTimeout(() => {
+            res('OK');
+          }, 9000);
+        }, 2000);
+      })
     }
   },
   created: function() {
@@ -81,18 +86,20 @@ export default {
     this.setMsg('欢迎您');
   },
   mounted: function() {
-    let that = this
+    let that = this;
     this.socket.onopen= function(){
         that.socket.send('get_names');
     }
-    this.socket.onmessage = function(data){
+    this.socket.onmessage = async function(data) {
         if(that.name == null) {
-          that.name = data.data
-          that.showName()
+          isNameShowing = true;
+          that.name = data.data;
+          await that.showName();
         } else if(that.name !== data.data) {
-          that.name == data.data
-          that.showName()
-          that.name = null
+          isNameShowing = true;
+          that.name == data.data;
+          await that.showName();
+          that.name = null;
         }
         that.socket.send('get_names');
     }
