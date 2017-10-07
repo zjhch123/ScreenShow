@@ -37,7 +37,9 @@ export default {
       back: false,
       greeting: '',
       showText: false,
-      hideText: false
+      hideText: false,
+      socket: null,
+      name: null
     }
   },
   methods: {
@@ -55,25 +57,50 @@ export default {
       setTimeout(() => {
         router.push('/index');
       }, 1000);
+    },
+    showName: function() {
+      let that = this
+      setTimeout(() => {
+        setTimeout(() => {
+          this.setMsg('您好');
+        }, 1000);
+        setTimeout(() => {
+          this.setMsg(that.name);
+        }, 2800);
+        setTimeout(() => {
+          this.setMsg('请入座');
+        }, 6000);
+        setTimeout(() => {
+          this.setMsg('欢迎您');
+        }, 8000);
+      }, 2000);
     }
   },
   created: function() {
+    this.socket = new WebSocket('ws://192.168.2.120:9998');
     this.setMsg('欢迎您');
-    setTimeout(() => {
-      setTimeout(() => {
-        this.setMsg('您好');
-      }, 1000);
-      setTimeout(() => {
-        this.setMsg('魔理沙');
-      }, 2800);
-      setTimeout(() => {
-        this.setMsg('请入座');
-      }, 6000);
-      setTimeout(() => {
-        this.setMsg('欢迎您');
-      }, 10000);
-    }, 2000);
+  },
+  mounted: function() {
+    let that = this
+    this.socket.onopen= function(){
+        that.socket.send('get_names');
+    }
+    this.socket.onmessage = function(data){
+        if(that.name == null) {
+          that.name = data.data
+          that.showName()
+        } else if(that.name !== data.data) {
+          that.name == data.data
+          that.showName()
+          that.name = null
+        }
+        that.socket.send('get_names');
+    }
+  },
+  destoryed: function() {
+    this.socket.close()
   }
+  
 }
 </script>
 <style scoped lang="scss">

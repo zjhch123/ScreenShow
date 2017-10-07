@@ -60,7 +60,7 @@ export default {
       }
       this.socket.onopen = function(){
           that.socket.send('get_frame');
-      } 
+      }
       this.socket.onmessage = function(data){
           if(data.data.length<256){
               console.log(data.data)
