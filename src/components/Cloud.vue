@@ -202,6 +202,7 @@ export default {
   text-align: justify;
   box-sizing: border-box;
   pointer-events: none;
+  z-index: 1;
   &:after {
     width: 100%;
     height: 1px;
@@ -260,6 +261,8 @@ export default {
   animation: fadeIn .8s 1.6s;
   animation-fill-mode: backwards;
   background-color: rgba(0,0,0,.6);
+  transform: translateZ(500px);
+  z-index: 9;
   &:before {
     width: 1px;
     height: 100%;

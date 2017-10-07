@@ -25,22 +25,22 @@ export default {
 <style scoped lang="scss">
 @keyframes floatBall {
   0% {
-    transform: translate3d(-10%,0,0);
+    transform: translate3d(-10%,0,-10px);
   }
   20% {
-   transform: translate3d(-12%,-15%,0); 
+   transform: translate3d(-12%,-15%, -10px); 
   }
   40% {
-   transform: translate3d(0%,-14%,0) scale(1.1);  
+   transform: translate3d(0%,-14%, -10px) scale(1.1);  
   }
   60% {
-   transform: translate3d(16%,-13%,0);  
+   transform: translate3d(16%,-13%, -10px);  
   }
   80% {
-   transform: translate3d(12%,0%,0) scale(.8);  
+   transform: translate3d(11%, 0%, -10px) scale(.8);  
   }
   100% {
-   transform: translate3d(7%,14%,0);  
+   transform: translate3d(7%,14%, -10px);  
   }
 }
 @keyframes scaleBall {
@@ -62,6 +62,7 @@ export default {
   left: 0;
   display: block;
   z-index: 0;
+  transform: translateZ(-10px);
   img {
     display: block;
   }
