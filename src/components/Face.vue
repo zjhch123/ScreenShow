@@ -64,7 +64,7 @@ export default {
         this.setMsg('您好');
       }, 1000);
       setTimeout(() => {
-        this.setMsg('江户川柯南');
+        this.setMsg('魔理沙');
       }, 2800);
       setTimeout(() => {
         this.setMsg('请入座');
