@@ -41,14 +41,6 @@ export default {
     opacity: 1;
   }
 }
-@keyframes opacityIn {
-  from {
-    background-color: rgba(0,0,0,0);
-  }
-  to {
-    background-color: rgba(0,0,0,.6);
-  }
-}
 .c-hello {
   height: 100%;
   width: 100%;
@@ -74,7 +66,7 @@ export default {
   background-color: rgba(0,0,0,.6);
   z-index: 1;
   display: none;
-  animation: opacityIn .8s;
+  animation: fadeIn .8s;
 }
 .g-title {
   position: relative;
