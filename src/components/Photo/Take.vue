@@ -50,16 +50,16 @@ export default {
     }
   },
   created: function() {
-      this.socket = new WebSocket('ws://192.168.2.120:9998')
+      this.socket = new WebSocket('ws://192.168.2.215:9998')
   },
   mounted: function() {
       let that = this
       let image = document.querySelector('.J-image')
       image.onload = function() {
-        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame')
+        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame_680_680')
       }
       this.socket.onopen = function(){
-          that.socket.send('get_frame');
+          that.socket.send('get_frame_680_680');
       }
       this.socket.onmessage = function(data){
           if(data.data.length<256){

@@ -3,7 +3,7 @@
     <div class="u-mask"></div>
     <div class="c-face-container"> 
       <div class="u-bg">
-        <img src="../assets/p5-bg.png" />
+        <img class="J-image" src="" />
       </div>
       <div class="m-content">
         <div class='m-circle m-circle1'>
@@ -39,7 +39,8 @@ export default {
       showText: false,
       hideText: false,
       socket: null,
-      name: null
+      name: null,
+      bgSrc: ''
     }
   },
   methods: {
@@ -82,29 +83,29 @@ export default {
     }
   },
   created: function() {
-    this.socket = new WebSocket('ws://192.168.2.120:9998');
+    this.socket = new WebSocket('ws://192.168.2.215:9998');
     this.setMsg('欢迎您');
   },
   mounted: function() {
     let that = this;
+    let image = document.querySelector('.J-image')
     this.socket.onopen= function(){
         that.socket.send('get_names');
+        that.socket.send('get_frame_680_1210');
     }
     this.socket.onmessage = async function(data) {
-        if(that.name == null) {
-          isNameShowing = true;
-          that.name = data.data;
-          await that.showName();
-        } else if(that.name !== data.data) {
-          isNameShowing = true;
-          that.name == data.data;
-          await that.showName();
-          that.name = null;
-        }
+      if (data.data.length < 255) {
+        that.name = data.data;
+        await that.showName();
+        that.name = null;
         that.socket.send('get_names');
+      } else {
+        image.src = data.data;
+        that.socket.send('get_frame_680_1210');
+      }
     }
   },
-  destoryed: function() {
+  destroyed: function() {
     this.socket.close()
   }
   
