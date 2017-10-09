@@ -55,8 +55,8 @@ export default {
   }
 }
 .u-app-bg {
-  width: 680px;
-  height: 1210px;
+  width: 1080px;
+  height: 1620px;
   position: absolute;
   top: 0;
   left: 0;
@@ -74,67 +74,67 @@ export default {
     position: absolute;
   }
   .u-ball1 {
-    top: 35px;
-    left: 245px;
-    width: 130px;
-    height: 129px;
+    top: 20px;
+    left: 400px;
+    width: 217px;
+    height: 190px;
     animation: floatBall 4s linear alternate infinite;
   }
   .u-ball2 {
-    width: 190px;
-    height: 190px;
-    top: 155px;
-    left: 300px;
+    width: 278px;
+    height: 278px;
+    top: 195px;
+    left: 580px;
     animation: floatBall 6s linear alternate infinite;
   }
   .u-ball3 {
-    width: 159px;
-    height: 202;
+    width: 175px;
+    height: 286px;
     right: 0;
-    top: 322px;
+    top: 360px;
     animation: scaleBall 3s linear alternate infinite;
   }
   .u-ball4 {
-    width: 344px;
-    height: 344px;
-    left: 98px;
-    top: 341px;
+    width: 539px;
+    height: 539px;
+    left: 125px;
+    top: 420px;
     animation: floatBall 8s linear alternate infinite;
   }
   .u-ball5 {
     width: 248px;
     height: 248px;
-    top: 460px;
-    right: 85px;
+    top: 550px;
+    left: 585px;
     animation: floatBall 5s linear alternate infinite;
   }
   .u-ball6 {
-    width: 136px;
-    height: 229px;
+    width: 242px;
+    height: 371px;
     left: 0;
-    top: 690px;
+    top: 915px;
     animation: scaleBall 7s linear alternate infinite;
   }
   .u-ball7 {
-    width: 203px;
-    height: 203px;
-    top: 765px;
-    left: 265px;
+    width: 311px;
+    height: 304px;
+    top: 1080px;
+    left: 396px;
     animation: floatBall 4s linear alternate infinite;
   }
   .u-ball8 {
-    width: 132px;
-    height: 132px;
-    right: 115px;
-    bottom: 48px;
+    width: 193px;
+    height: 193px;
+    right: 175px;
+    bottom: 30px;
     animation: floatBall 3s linear alternate infinite;
   }
 }
 </style>
 <style lang="scss">
 html, body {
-  width: 680px;
-  height: 1210px;
+  width: 1080px;
+  height: 1620px;
   margin: auto;
 }
 #app {
@@ -143,8 +143,8 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  width: 680px;
-  height: 1210px;
+  width: 1080px;
+  height: 1620px;
   position: relative;
   overflow: hidden;
   .c-app-container {

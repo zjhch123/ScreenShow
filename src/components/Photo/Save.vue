@@ -111,9 +111,9 @@ export default {
   z-index: 2;
   .m-photo {
     position: relative;
-    margin: 40px auto 18px auto;
-    width: 624px;
-    height: 1024px;
+    margin: 40px auto 25px auto;
+    width: 980px;
+    height: 1360px;
     .u-border {
       position: absolute;
       top: 0;
@@ -123,8 +123,8 @@ export default {
       margin: auto;
       z-index: 1;
       background-color: rgba(0,51,255,1);
-      width: 610px;
-      height: 1010px;
+      width: 970px;
+      height: 1350px;
       transition: all .1s;
     }
     .m-container {
@@ -134,8 +134,8 @@ export default {
       left: 0;
       bottom: 0;
       z-index: 2;
-      width: 600px;
-      height: 1000px;
+      width: 955px;
+      height: 1335px;
       box-sizing: border-box;
       padding: 24px;
       overflow: auto;
@@ -158,12 +158,12 @@ export default {
     font-size: 0;
     .u-btn {
       display: inline-block;
-      width: 195px;
-      line-height: 83px;
+      width: 298px;
+      line-height: 129px;
       text-align: center;
       background-repeat: no-repeat;
       background-size: 100% auto;
-      font-size: 31px;
+      font-size: 48px;
       color: white;
       transition: transform .8s;
       &+.u-btn {

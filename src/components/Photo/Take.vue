@@ -105,18 +105,18 @@ export default {
 }
 @keyframes flash {
   0% {
-    width: 680px;
-    height: 1210px;
+    width: 1080px;
+    height: 1620px;
     opacity: 0;
   }
   50% {
-    width: 680px;
-    height: 1210px;
+    width: 1080px;
+    height: 1620px;
     opacity: 1;
   }
   100% {
-    width: 680px;
-    height: 1210px;
+    width: 1080px;
+    height: 1620px;
     opacity: 0;
   }
 }
@@ -155,14 +155,14 @@ export default {
     animation: fadeIn .8s;
   }
   .u-title {
-    margin-top: 60px;
-    font-size: 42px;
+    margin-top: 65px;
+    font-size: 56px;
     color: white;
     .icon {
       display: inline-block;
       vertical-align: middle;
-      width: 74px;
-      height: 60px;
+      width: 110px;
+      height: 92px;
       background-image: url('../../assets/p3-photo.png');
       background-size: 100% auto;
       background-repeat: no-repeat;
@@ -175,9 +175,9 @@ export default {
   }
   .m-photo {
     position: relative;
-    width: 680px;
-    height: 680px;
-    margin: 65px 0 100px 0;
+    width: 1080px;
+    height: 1080px;
+    margin: 55px 0 80px;
     .u-inner, .u-border {
       position: absolute;
       left: 0;
@@ -187,14 +187,14 @@ export default {
       margin: auto;
     }
     .u-border {
-      width: 599px;
-      height: 600px;
+      width: 953px;
+      height: 953px;
       z-index: 3;
       background-image: url('../../assets/p3-photo-border.png');
     }
     .u-inner {
-      width: 680px;
-      height: 680px;
+      width: 100%;
+      height: 100%;
       background-color: black;
       overflow: hidden;
       img {
@@ -207,12 +207,12 @@ export default {
     font-size: 0;
     .u-btn {
       display: inline-block;
-      width: 195px;
-      line-height: 83px;
+      width: 298px;
+      line-height: 129px;
       text-align: center;
       background-repeat: no-repeat;
       background-size: 100% auto;
-      font-size: 31px;
+      font-size: 48px;
       color: white;
       transition: transform .8s;
       &+.u-btn {

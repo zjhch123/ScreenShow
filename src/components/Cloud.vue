@@ -198,7 +198,7 @@ export default {
 .m-back {
   animation: fadeIn .4s;
   font-size: 0;
-  padding: 50px 20px;
+  padding: 24px 65px;
   text-align: justify;
   box-sizing: border-box;
   pointer-events: none;
@@ -210,10 +210,10 @@ export default {
     display: inline-block;
   }
   .u-photo {
-    margin-bottom: 22px;
+    margin-bottom: 30px;
     display: inline-block;
-    width: 201px;
-    height: 201px;
+    width: 290px;
+    height: 290px;
     backface-visibility: hidden;
     position: relative;
     transform-style:preserve-3d;
@@ -260,7 +260,7 @@ export default {
   pointer-events: auto;
   animation: fadeIn .8s 1.6s;
   animation-fill-mode: backwards;
-  background-color: rgba(0,0,0,.6);
+  background-color: rgba(41,41,79,.6);
   transform: translateZ(500px);
   z-index: 9;
   &:before {
@@ -276,18 +276,18 @@ export default {
     pointer-events: none;
   }
   .u-qr {
-    margin-top: 78px;
+    margin-top: 123px;
     background-color: white;
     padding: 8px;
     display: inline-block;
     img {
       display: block;
-      width: 185px;
-      height: 185px;
+      width: 290px;
+      height: 290px;
     }
   }
   .u-title {
-    font-size: 31px;
+    font-size: 41px;
     color: #3df6ff;
     font-weight: bold;
   }

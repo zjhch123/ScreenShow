@@ -19,7 +19,7 @@
           <div class="u-circle"></div>
         </div>
         <div class="u-inner" :class='{showText: showText, hideText: hideText}'>
-          <p>{{greeting}}</p>
+          <p :style="{fontSize:fontSize}">{{greeting}}</p>
         </div>
       </div>
       <div class="m-btn-group">
@@ -40,16 +40,19 @@ export default {
       hideText: false,
       socket: null,
       name: null,
-      bgSrc: ''
+      bgSrc: '',
+      fontSize: '60px'
     }
   },
   methods: {
-    setMsg: function(msg) {
+    setMsg: function(msg, fontSize) {
       this.showText = false;
       this.hideText = true;
+      fontSize = fontSize || '60px';
       setTimeout(() => {
         this.greeting = msg;
         this.hideText = false;
+        this.fontSize = fontSize;
         this.showText = true;
       }, 600);
     },
@@ -67,7 +70,7 @@ export default {
             this.setMsg('您好');
           }, 1000);
           setTimeout(() => {
-            this.setMsg(that.name);
+            this.setMsg(that.name.split(',').join('<br/>'), '50px');
           }, 2800);
           setTimeout(() => {
             this.setMsg('请入座');
@@ -174,7 +177,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: 180px;
+    top: 370px;
     width: 600px;
     height: 600px;
     margin-left: auto;
@@ -185,20 +188,28 @@ export default {
       position: absolute;
       top: 50%;
       left: 50%;
-      margin-top: -154px;
-      margin-left: -154px;
+      margin-top: -253px;
+      margin-left: -253px;
       background-image: url('../assets/p5-inner.png');
-      width: 308px;
-      height: 308px;
+      width: 506px;
+      height: 507px;
       background-size: 100% auto;
       display: inline-block;
-      line-height: 308px;
-      font-size: 60px;
+      font-size: 48px;
       color: white;
       font-weight: bold;
       z-index: 999;
+      &:before {
+        content: '';
+        display: inline-block;
+        height: 100%;
+        width: 1px;
+        vertical-align: middle;
+      }
       p {
         transition: all .6s;
+        display: inline-block;
+        vertical-align: middle;
       }
       &.showText {
         p {
@@ -218,18 +229,18 @@ export default {
     font-size: 0;
     position: absolute;
     z-index: 3;
-    top: 1000px;
+    top: 1300px;
     left: 0;
     right: 0;
     text-align: center;
     .u-btn {
       display: inline-block;
-      width: 195px;
-      line-height: 83px;
+      width: 298px;
+      line-height: 129px;
       text-align: center;
       background-repeat: no-repeat;
       background-size: 100% auto;
-      font-size: 31px;
+      font-size: 48px;
       color: white;
       transition: transform .8s;
       &+.u-btn {
@@ -248,8 +259,8 @@ export default {
   }
 }
 @keyframes moveover {
-  0%   {transform:rotate(0deg);}
-  100% {transform:rotate(360deg);}
+  0%   {transform:translate(-50%, -50%) rotate(0deg);}
+  100% {transform:translate(-50%, -50%) rotate(360deg);}
 }
 .m-circle {
   position: absolute;
@@ -259,54 +270,56 @@ export default {
   .u-border {
     width: 100%;
     height: 100%;
-    position: absolute;
     background-repeat: no-repeat;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
   }
   .u-circle {
     margin: auto;
     background-repeat: no-repeat;
     background-size: auto 100%;
-    top: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
     position: absolute;
+    transform: translate(-50%, -50%);
     animation: moveover 3s linear infinite reverse;
   }
 }
 .m-circle1 {
-  width: 403px;
-  height: 403px;
+  width: 640px;
+  height: 641px;
   .u-border {
     background-image: url('../assets/p5-border1.png');
   }
   .u-circle {
-    width: 402px;
-    height: 402px;
+    width: 668px;
+    height: 668px;
     background-image: url('../assets/p5-circle1.png');
   }
 }
 .m-circle2 {
-  width: 508px;
-  height: 508px;
+  width: 805px;
+  height: 806px;
   .u-border {
     background-image: url('../assets/p5-border2.png');
   }
   .u-circle {
-    width: 510px;
-    height: 510px;
+    width: 840px;
+    height: 840px;
     background-image: url('../assets/p5-circle2.png');
   }
 }
 .m-circle3 {
-  width: 609px;
-  height: 610px;
+  width: 982px;
+  height: 982px;
   .u-border {
     background-image: url('../assets/p5-border3.png');
   }
   .u-circle {
-    width: 610px;
-    height: 610px;
+    width: 996px;
+    height: 996px;
     background-image: url('../assets/p5-circle3.png');
   }
 }

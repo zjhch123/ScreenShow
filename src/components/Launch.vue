@@ -74,13 +74,13 @@ export default {
   display: block;
   text-align: center;  
   color: white;
-  transform: translate3d(0, 487px, 0);
+  transform: translate3d(0, 595px, 0);
   animation: fadeIn .8s;
   .u-title {
-    font-size: 60px;
+    font-size: 94px;
   }
   .u-subtitle {
-    font-size: 28px;
+    font-size: 44px;
     line-height: 60px;
   }
 }
@@ -93,7 +93,7 @@ export default {
   text-align: center;
   transition: transform .8s;
   .u-footer {
-    font-size: 21px;
+    font-size: 33px;
     color: #a099fc;
   }
 }

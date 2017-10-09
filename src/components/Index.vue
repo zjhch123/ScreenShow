@@ -100,12 +100,11 @@ export default {
   color: white;
   transform: translate3d(0, 70px, 0) scale(.7);
   transition: opacity .8s;
-  text-shadow: 0 0 20px rgba(0,0,0,.6);
   .u-title {
-    font-size: 60px;
+    font-size: 94px;
   }
   .u-subtitle {
-    font-size: 28px;
+    font-size: 44px;
     line-height: 60px;
   }
 }
@@ -159,43 +158,43 @@ export default {
   }
   .m-photo {
     background-image: url('../assets/p1-ball1.png');
-    width: 254px;
-    height: 254px;
-    font-size: 31px;
-    right: 50px;
-    top: 240px;
+    width: 376px;
+    height: 375px;
+    font-size: 40px;
+    right: 140px;
+    top: 295px;
     .icon {
       background-image: url('../assets/p1-photo.png');
-      width: 91px;
-      height: 71px;
+      width: 124px;
+      height: 97px;
       margin-bottom: 8px;
     }
   }
   .m-face {
     background-image: url('../assets/p1-ball2.png');
-    width: 350px;
-    height: 350px;
-    font-size: 34px;
-    left: 75px;
-    top: 495px;
+    width: 512px;
+    height: 510px;
+    font-size: 44px;
+    left: 100px;
+    top: 643px;
     .icon {
       background-image: url('../assets/p1-face.png');
-      width: 117px;
-      height: 116px;
+      width: 160px;
+      height: 160px;
       margin-bottom: 18px;
     }
   }
   .m-cloud {
     background-image: url('../assets/p1-ball3.png');
-    width: 253px;
-    height: 253px;
-    font-size: 31px;
-    right: 90px;
-    top: 860px;
+    width: 377px;
+    height: 380px;
+    font-size: 40px;
+    right: 170px;
+    bottom: 120px;
     .icon {
       background-image: url('../assets/p1-cloud.png');
-      width: 71px;
-      height: 71px;
+      width: 97px;
+      height: 97px;
       margin-bottom: 12px;
     }
   }

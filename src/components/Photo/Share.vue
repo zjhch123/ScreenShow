@@ -115,15 +115,15 @@ export default {
     margin: 95px auto 50px auto;
     text-align: center;
     .u-title {
-      font-size: 52px;
+      font-size: 72px;
       color: #54faff;
       font-weight: bolder;
     }
   }
   .m-photo {
     position: relative;
-    width: 470px;
-    height: 470px;
+    width: 665px;
+    height: 665px;
     margin-left: auto;
     margin-right:auto;
     .u-border {
@@ -146,8 +146,8 @@ export default {
       left: 0;
       bottom: 0;
       z-index: 2;
-      width: 445px;
-      height: 445px;
+      width: 640px;
+      height: 640px;
       box-sizing: border-box;
       overflow: hidden;
       margin: auto;
@@ -168,8 +168,8 @@ export default {
   .m-func {
     margin: auto;
     .u-qr {
-      width: 147px;
-      height: 147px;
+      width: 230px;
+      height: 230px;
       display: inline-block;
       background-color: white;
       padding: 5px;
@@ -182,7 +182,7 @@ export default {
     }
     .m-content {
       color: white;
-      font-size: 31px;
+      font-size: 44px;
       text-align: center;
       font-weight: bold;
       .icon {
@@ -191,13 +191,13 @@ export default {
       }
       .icon-timeline {
         background-image: url('../../assets/p4-timeline.png');
-        width: 40px;
-        height: 40px;
+        width: 58px;
+        height: 59px;
       }
       .u-title {
         display: inline-block;
         vertical-align: middle;
-        margin-left: 10px;
+        margin-left: 18px;
       }
     }
   }
@@ -206,12 +206,12 @@ export default {
     margin-top: 30px;
     .u-btn {
       display: inline-block;
-      width: 195px;
-      line-height: 83px;
+      width: 298px;
+      line-height: 129px;
       text-align: center;
       background-repeat: no-repeat;
       background-size: 100% auto;
-      font-size: 31px;
+      font-size: 48px;
       color: white;
       transition: transform .8s;
       &+.u-btn {
