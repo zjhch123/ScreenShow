@@ -75,7 +75,7 @@ export default {
       }).then(function (response) {
         return response.json();
       }).then((json) => {
-        that.QRcode = basePath + '/' + json.data.QRCode
+        that.QRcode = !!json.data.QRCode ? basePath + '/' + json.data.QRCode : '';
         for(let i = 0; i < json.data.imageUrls.length ; i++){
           json.data.imageUrls[i] = basePath + json.data.imageUrls[i]
         }
@@ -99,17 +99,17 @@ export default {
               <div class="u-back"></div>
             </div> `
           }
+          this.photoInterval = setInterval(() => {
+            this._getRandom(15, ROTATE_COUNT).map(function(id) {
+              return document.querySelectorAll('.J_photo')[id]
+            }).forEach(function(ele) {
+              ele.classList.add('rotate');
+              setTimeout(function() {
+                ele.classList.remove('rotate');
+              }, 5000);
+            })
+          }, 5000);
         }
-        this.photoInterval = setInterval(() => {
-          this._getRandom(15, ROTATE_COUNT).map(function(id) {
-            return document.querySelectorAll('.J_photo')[id]
-          }).forEach(function(ele) {
-            ele.classList.add('rotate');
-            setTimeout(function() {
-              ele.classList.remove('rotate');
-            }, 5000);
-          })
-        }, 5000);
      }).catch((err) => {
       console.log(err)
     })
