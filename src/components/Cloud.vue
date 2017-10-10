@@ -94,12 +94,12 @@
       </div>
     </div> -->
     <div class="m-back">
-      <div v-for="photo in photolist" class="u-photo J_photo">
+      <!-- <div v-for="photo in photolist" class="u-photo J_photo">
         <div class="u-front">
           <img :src="photo"/>
         </div>
         <div class="u-back"></div>
-      </div>
+      </div> -->
     </div>
     <div class="m-front">
       <div class="m-content">
@@ -149,17 +149,22 @@ export default {
   },
   created: function() {
     const ROTATE_COUNT = 6;
+    // this.photoInterval = setInterval(() => {
+    //   this._getRandom(15, ROTATE_COUNT).map(function(id) {
+    //     return document.querySelectorAll('.J_photo')[id]
+    //   }).forEach(function(ele) {
+    //     ele.classList.add('rotate');
+    //     setTimeout(function() {
+    //       ele.classList.remove('rotate');
+    //     }, 5000);
+    //   })
+    // }, 5000);
+  }, 
+  mounted: function() {
     let that = this;
-    this.photoInterval = setInterval(() => {
-      this._getRandom(15, ROTATE_COUNT).map(function(id) {
-        return document.querySelectorAll('.J_photo')[id]
-      }).forEach(function(ele) {
-        ele.classList.add('rotate');
-        setTimeout(function() {
-          ele.classList.remove('rotate');
-        }, 5000);
-      })
-    }, 5000);
+    let index;
+    let photoDom
+    let temp = 0
     fetch(AjaxUrl.cloud, {
         method: 'POST',
         headers: {
@@ -172,16 +177,37 @@ export default {
       }).then((json) => {
         console.log(json)
         that.QRcode = basePath + '/' + json.data.QRCode
-        that.photolist = json.data.imageUrls
-    }) 
-  }, 
+        for(let i = 0; i < json.data.imageUrls.length ; i++){
+          json.data.imageUrls[i] = basePath + json.data.imageUrls[i]
+        }
+        if(json.data.imageUrls.length < 15) {
+          that.photolist = json.data.imageUrls
+          for (let i = json.data.imageUrls.length; i < 15 ;i++) {
+            that.photolist[i] = json.data.imageUrls[temp]
+            temp++
+          }
+        } else {
+          that.photolist = json.data.imageUrls
+        }
+        photoDom = document.querySelector('.m-back')
+        for(let i = 0; i < 15; i++) {
+          photoDom.innerHTML += 
+          `<div class="u-photo J_photo">
+            <div class="u-front">
+              <img src='${that.photolist[i]}'/>
+            </div>
+            <div class="u-back"></div>
+          </div> `
+        }
+     })   
+  },
   beforeDestroy: function() {
     clearInterval(this.photoInterval);
   }
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -194,132 +220,133 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-}
-.back {
-  .m-front {
-    transition: all .4s;
-    opacity: 0;
+  .back {
+    .m-front {
+      transition: all .4s;
+      opacity: 0;
+    }
+    .m-back {
+      opacity: 0;
+      transition: all .4s .8s;;
+    }
+  }
+  .u-mask {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,.6);
+    z-index: 0;
+  }
+  .m-back, .m-front {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
   .m-back {
-    opacity: 0;
-    transition: all .4s .8s;;
-  }
-}
-.u-mask {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0,0,0,.6);
-  z-index: 0;
-}
-.m-back, .m-front {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-.m-back {
-  animation: fadeIn .4s;
-  font-size: 0;
-  padding: 80px 30px;
-  text-align: justify;
-  box-sizing: border-box;
-  pointer-events: none;
-  z-index: 1;
-  &:after {
-    width: 100%;
-    height: 1px;
-    content: '';
-    display: inline-block;
-  }
-  .u-photo {
-    margin-bottom: 35px;
-    display: inline-block;
-    width: 322px;
-    height: 322px;
-    backface-visibility: hidden;
-    position: relative;
-    transform-style:preserve-3d;
-    perspective: 1000px;
-    .u-front, .u-back {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      transform-style: preserve-3d;
-    }
-    .u-front {
-      z-index: 2;
-      transition: transform .4s .4s linear;
-      img {
-        position: absolute;
-        height: 100%;
-        display: block;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-      }
-    }
-    .u-back {
-      background-color: black;
-      transition: transform .4s linear;
-      transform: rotate3d(1, 0, 0, -90deg);
-      z-index: 1;
-    }
-  }
-  .u-photo {
-    &.rotate {
-      .u-front {
-        transition: transform .4s linear;
-        transform: rotate3d(1, 0, 0, -90deg);
-      }
-      .u-back {
-        transition: transform .4s .4s linear;
-        transform: rotate3d(1, 0, 0, -180deg);
-      }
-    }
-  }
-}
-.m-front {
-  pointer-events: auto;
-  animation: fadeIn .8s 1.6s;
-  animation-fill-mode: backwards;
-  background-color: rgba(41,41,79,.6);
-  transform: translateZ(500px);
-  z-index: 9;
-  &:before {
-    width: 1px;
-    height: 100%;
-    vertical-align: middle;
-    content: '';
-    display: inline-block;
-  }
-  .m-content {
-    display: inline-block;
-    vertical-align: middle;
+    animation: fadeIn .4s;
+    font-size: 0;
+    padding: 80px 30px;
+    text-align: justify;
+    box-sizing: border-box;
     pointer-events: none;
-  }
-  .u-qr {
-    margin-top: 133px;
-    background-color: white;
-    padding: 8px;
-    display: inline-block;
-    img {
-      display: block;
+    z-index: 1;
+    &:after {
+      width: 100%;
+      height: 1px;
+      content: '';
+      display: inline-block;
+    }
+    .u-photo {
+      margin-bottom: 35px;
+      display: inline-block;
       width: 322px;
       height: 322px;
+      backface-visibility: hidden;
+      position: relative;
+      transform-style:preserve-3d;
+      perspective: 1000px;
+      .u-front, .u-back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        transform-style: preserve-3d;
+      }
+      .u-front {
+        z-index: 2;
+        transition: transform .4s .4s linear;
+        img {
+          position: absolute;
+          height: 100%;
+          display: block;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+        }
+      }
+      .u-back {
+        background-color: black;
+        transition: transform .4s linear;
+        transform: rotate3d(1, 0, 0, -90deg);
+        z-index: 1;
+      }
+    }
+    .u-photo {
+      &.rotate {
+        .u-front {
+          transition: transform .4s linear;
+          transform: rotate3d(1, 0, 0, -90deg);
+        }
+        .u-back {
+          transition: transform .4s .4s linear;
+          transform: rotate3d(1, 0, 0, -180deg);
+        }
+      }
     }
   }
-  .u-title {
-    font-size: 49px;
-    color: #3df6ff;
-    font-weight: bold;
+  .m-front {
+    pointer-events: auto;
+    animation: fadeIn .8s 1.6s;
+    animation-fill-mode: backwards;
+    background-color: rgba(41,41,79,.6);
+    transform: translateZ(500px);
+    z-index: 9;
+    &:before {
+      width: 1px;
+      height: 100%;
+      vertical-align: middle;
+      content: '';
+      display: inline-block;
+    }
+    .m-content {
+      display: inline-block;
+      vertical-align: middle;
+      pointer-events: none;
+    }
+    .u-qr {
+      margin-top: 133px;
+      background-color: white;
+      padding: 8px;
+      display: inline-block;
+      img {
+        display: block;
+        width: 322px;
+        height: 322px;
+      }
+    }
+    .u-title {
+      font-size: 49px;
+      color: #3df6ff;
+      font-weight: bold;
+    }
   }
 }
+
 </style>
