@@ -121,7 +121,7 @@ export default {
 </script>
 
 <style lang="scss">
-@keyframes fadeIn {
+@keyframes fadeInCloud {
   from {
     opacity: 0;
   }
@@ -133,7 +133,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  .back {
+  &.back {
     .m-front {
       transition: all .4s;
       opacity: 0;
@@ -161,7 +161,7 @@ export default {
     height: 100%;
   }
   .m-back {
-    animation: fadeIn .4s;
+    animation: fadeInCloud .4s;
     font-size: 0;
     padding: 80px 30px;
     text-align: justify;
@@ -226,7 +226,7 @@ export default {
   }
   .m-front {
     pointer-events: auto;
-    animation: fadeIn .8s 1.6s;
+    animation: fadeInCloud .8s 1.6s;
     animation-fill-mode: backwards;
     background-color: rgba(41,41,79,.6);
     transform: translateZ(500px);
