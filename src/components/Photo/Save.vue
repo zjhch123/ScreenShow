@@ -95,6 +95,14 @@ export default {
     opacity: 1;
   }
 }
+@keyframes opacityIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .c-save {
   position: relative;
   width: 100%;
@@ -125,6 +133,7 @@ export default {
   z-index: 1000;
   background-color: rgba(0,0,0,.6);
   pointer-events: auto;
+  animation: opacityIn .6s;
   p {
     font-size: 90px;
     color: white;
