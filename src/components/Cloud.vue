@@ -50,10 +50,9 @@ export default {
     }
   },
   created: function() {
-    
+    const ROTATE_COUNT = 6;
   }, 
   mounted: function() {
-    const ROTATE_COUNT = 6;
     let that = this;
     let index;
     let photoDom
@@ -93,16 +92,16 @@ export default {
             </div> `
           }
         }
-        // this.photoInterval = setInterval(() => {
-        //   this._getRandom(15, ROTATE_COUNT).map(function(id) {
-        //     return document.querySelectorAll('.J_photo')[id]
-        //   }).forEach(function(ele) {
-        //     ele.classList.add('rotate');
-        //     setTimeout(function() {
-        //       ele.classList.remove('rotate');
-        //     }, 5000);
-        //   })
-        // }, 5000);
+        this.photoInterval = setInterval(() => {
+          this._getRandom(15, ROTATE_COUNT).map(function(id) {
+            return document.querySelectorAll('.J_photo')[id]
+          }).forEach(function(ele) {
+            ele.classList.add('rotate');
+            setTimeout(function() {
+              ele.classList.remove('rotate');
+            }, 5000);
+          })
+        }, 5000);
      }).catch((err) => {
       console.log(err)
     })
