@@ -120,7 +120,7 @@ export default {
   bottom: 0;
   z-index: 2;
   .m-title {
-    margin: 95px auto 50px auto;
+    margin: 125px auto 70px auto;
     text-align: center;
     .u-title {
       font-size: 72px;
@@ -181,7 +181,7 @@ export default {
       display: inline-block;
       background-color: white;
       padding: 5px;
-      margin: 50px auto 20px;
+      margin: 90px auto 50px;
       img {
         width: 100%;
         height: 100%;
@@ -211,7 +211,7 @@ export default {
   }
   .m-btn-group {
     font-size: 0;
-    margin-top: 30px;
+    margin-top: 70px;
     .u-btn {
       display: inline-block;
       width: 298px;

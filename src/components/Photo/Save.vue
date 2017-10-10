@@ -115,9 +115,9 @@ export default {
   z-index: 2;
   .m-photo {
     position: relative;
-    margin: 40px auto 25px auto;
+    margin: 90px auto 25px auto;
     width: 980px;
-    height: 1360px;
+    height: 1560px;
     .u-border {
       position: absolute;
       top: 0;
@@ -128,7 +128,7 @@ export default {
       z-index: 1;
       background-color: rgba(0,51,255,1);
       width: 970px;
-      height: 1350px;
+      height: 1550px;
       transition: all .1s;
     }
     .m-container {
@@ -139,7 +139,7 @@ export default {
       bottom: 0;
       z-index: 2;
       width: 955px;
-      height: 1335px;
+      height: 1535px;
       box-sizing: border-box;
       padding: 24px;
       overflow: auto;

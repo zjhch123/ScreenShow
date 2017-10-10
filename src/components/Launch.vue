@@ -74,7 +74,7 @@ export default {
   display: block;
   text-align: center;  
   color: white;
-  transform: translate3d(0, 595px, 0);
+  transform: translate3d(0, 695px, 0);
   animation: fadeIn .8s;
   .u-title {
     font-size: 94px;
