@@ -16,7 +16,7 @@
           <img class="J-image"/>
         </div>
       </div>
-      <div class="m-btn-group">
+      <div class="m-btn-group" :class="{hidden: ready}">
         <a class="u-back u-btn f-shadow" @click="fBack">返回</a>
         <a class="u-save u-btn f-shadow" @click="fSave">拍照</a>
       </div>
@@ -264,6 +264,11 @@ export default {
     }
   }
   .m-btn-group {
+    &.hidden {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    transition: all .8s;
     font-size: 0;
     .u-btn {
       display: inline-block;

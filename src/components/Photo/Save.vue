@@ -1,6 +1,6 @@
 <template>
   <div class="c-save" :class="{saved: saved}">
-    <div class="u-filter" v-show="uploading">
+    <div class="u-filter" :class="{show: uploading}">
       <p>{{msg}}</p>
     </div>
     <div class="g-in">
@@ -27,7 +27,7 @@ export default {
   name: 'TakePhoto',
   data () {
     return {
-      msg: '上传中,请稍后',
+      msg: '上传中,请稍后..',
       saved: false,
       img: null,
       uploading: false
@@ -50,7 +50,7 @@ export default {
       formData.append("file", $Blob ,"file_"+Date.parse(new Date())+".jpg"); 
       let body = formData
       this.uploading = true;
-      this.msg = '上传中,请稍后';
+      this.msg = '上传中,请稍后..';
       fetch(AjaxUrl.upload, {
         method: 'POST',
         body: body
@@ -133,7 +133,11 @@ export default {
   z-index: 1000;
   background-color: rgba(0,0,0,.6);
   pointer-events: auto;
+  display: none;
   animation: opacityIn .6s;
+  &.show {
+    display: block;
+  }
   p {
     font-size: 90px;
     color: white;
