@@ -8,13 +8,13 @@
         <div class="u-border"></div>
         <div class="m-container">
           <div class="u-inner">
-            <img src="../../assets/temp.png"/>
+            <img :src="imageurl"/>
           </div>
         </div>
       </div>
       <div class="m-func">
         <div class="u-qr">
-          <img src="../../assets/t_qr.png"/>
+          <img :src="QRcode"/>
         </div>
         <div class="m-content">
           <p><label class="icon icon-timeline"></label><span class="u-title">扫一扫</span></p>
@@ -35,7 +35,9 @@ export default {
   data () {
     return {
       init: true,
-      leave: false
+      leave: false,
+      imageurl: '',
+      QRcode: ''
     }
   },
   methods: {
@@ -50,6 +52,12 @@ export default {
     setTimeout(() => {
       this.init = false;
     }, 2001);
+    this.imageurl = localStorage.getItem('imageurl')
+    this.QRcode = localStorage.getItem('QRcode')
+  },
+  destroyed: function() {
+    localStorage.removeItem('imageurl')
+    localStorage.removeItem('QRcode')
   }
 }
 </script>

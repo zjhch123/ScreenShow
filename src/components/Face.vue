@@ -30,6 +30,8 @@
 </template>
 <script>
 import router from '../router';
+import {wsIp} from '../config';
+
 export default {
   name: 'Face',
   data () {
@@ -86,7 +88,7 @@ export default {
     }
   },
   created: function() {
-    this.socket = new WebSocket('ws://192.168.2.215:9998');
+    this.socket = new WebSocket(wsIp);
     this.setMsg('欢迎您');
   },
   mounted: function() {
@@ -94,7 +96,7 @@ export default {
     let image = document.querySelector('.J-image')
     this.socket.onopen= function(){
         that.socket.send('get_names');
-        that.socket.send('get_frame_680_1210');
+        that.socket.send('get_frame_1080_1920');
     }
     this.socket.onmessage = async function(data) {
       if (data.data.length < 255) {
@@ -104,7 +106,7 @@ export default {
         that.socket.send('get_names');
       } else {
         image.src = data.data;
-        that.socket.send('get_frame_680_1210');
+        that.socket.send('get_frame_1080_1920');
       }
     }
   },

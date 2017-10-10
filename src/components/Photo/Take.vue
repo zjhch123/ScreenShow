@@ -20,6 +20,8 @@
 </template>
 <script>
 import router from '../../router';
+import {wsIp} from '../../config';
+
 export default {
   name: 'TakePhoto',
   data () {
@@ -50,16 +52,16 @@ export default {
     }
   },
   created: function() {
-      this.socket = new WebSocket('ws://192.168.2.215:9998')
+      this.socket = new WebSocket(wsIp)
   },
   mounted: function() {
       let that = this
       let image = document.querySelector('.J-image')
       image.onload = function() {
-        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame_680_680')
+        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame_1080_1080')
       }
       this.socket.onopen = function(){
-          that.socket.send('get_frame_680_680');
+          that.socket.send('get_frame_1080_1080');
       }
       this.socket.onmessage = function(data){
           if(data.data.length<256){
