@@ -54,7 +54,6 @@ export default {
       }).then(function (response) {
         return response.json();
       }).then((data)=> {
-        console.log(data)
         localStorage.setItem('imageurl', basePath + data.data.imageurl)
         localStorage.setItem('QRcode', basePath + '/' + data.data.QRcode)
         setTimeout(() => {
@@ -63,8 +62,9 @@ export default {
             router.push('/photo/share');
           }, 200);
         }, 1000);
-      })
-      this.canClick = true;
+      }).catch((err) => {
+        this.canClick = true;
+      });
     },
     fBack: function() {
       if (!this.canClick) return;
