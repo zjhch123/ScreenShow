@@ -108,6 +108,8 @@
 </template>
 <script>
 import router from '../router';
+import {AjaxUrl} from '../config';
+
 export default {
   name: 'Cloud',
   data () {
@@ -147,7 +149,19 @@ export default {
         }, 5000);
       })
     }, 5000);
-  },
+    fetch(AjaxUrl.cloud, {
+        method: 'POST',
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded"
+        },
+        dataType: 'json',
+        body: 'topic=ff'
+      }).then(function (response) {
+        return response.json();
+      }).then((json) => {
+        console.log(json)
+    }) 
+  }, 
   beforeDestroy: function() {
     clearInterval(this.photoInterval);
   }

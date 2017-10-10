@@ -18,7 +18,7 @@
 </template>
 <script>
 import router from '../../router/';
-import {AjaxUrl} from '../../config';
+import {base64, basePath, AjaxUrl} from '../../config';
 
 export default {
   name: 'TakePhoto',
@@ -48,8 +48,12 @@ export default {
       fetch(AjaxUrl.upload, {
         method: 'POST',
         body: body
+      }).then(function (response) {
+        return response.json();
       }).then((data)=> {
         console.log(data)
+        localStorage.setItem('imageurl', basePath + data.data.imageurl)
+        localStorage.setItem('QRcode', basePath + '/' + data.data.QRcode)
         setTimeout(() => {
           this.saved = true;
           setTimeout(() => {
