@@ -260,6 +260,7 @@ export default {
       img {
         width: 100%;
         display: block;
+        transform: rotateY(180deg);
       }
     }
   }
