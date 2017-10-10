@@ -57,13 +57,13 @@ export default {
     }
   },
   created: function() {
-    const ROTATE_COUNT = 6;
   }, 
   mounted: function() {
     let that = this;
     let index;
-    let photoDom
-    let temp = 0
+    let photoDom;
+    let temp = 0;
+    const ROTATE_COUNT = 6;
     let topic_id = that.getUrlParam(window.location.search, 'id').split('/')[0] || 15
     fetch(AjaxUrl.cloud, {
         method: 'POST',
