@@ -1,5 +1,8 @@
 <template>
   <div class="c-save" :class="{saved: saved}">
+    <div class="u-filter" v-show="uploading">
+      <p>{{msg}}</p>
+    </div>
     <div class="g-in">
       <div class="m-photo">
         <div class="u-border"></div>
@@ -24,10 +27,10 @@ export default {
   name: 'TakePhoto',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
+      msg: '上传中,请稍后',
       saved: false,
       img: null,
-      canClick: true
+      uploading: false
     }
   },
   methods: {
@@ -41,13 +44,13 @@ export default {
     },
 
     savePhoto: function() {
-      if (!this.canClick) return;
       let that = this
       let $Blob = that.getBlobBydataURI(that.img)
       var formData = new FormData();
       formData.append("file", $Blob ,"file_"+Date.parse(new Date())+".jpg"); 
       let body = formData
-      this.canClick = false;
+      this.uploading = true;
+      this.msg = '上传中,请稍后';
       fetch(AjaxUrl.upload, {
         method: 'POST',
         body: body
@@ -63,11 +66,13 @@ export default {
           }, 200);
         }, 1000);
       }).catch((err) => {
-        this.canClick = true;
+        this.msg = '上传失败,请重试';
+        setTimeout(() => {
+          this.uploading = false;
+        }, 1500);
       });
     },
     fBack: function() {
-      if (!this.canClick) return;
       router.push('/photo');
     }
   },
@@ -109,6 +114,27 @@ export default {
         border: 0px;
       }
     }
+  }
+}
+.u-filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  background-color: rgba(0,0,0,.6);
+  pointer-events: auto;
+  p {
+    font-size: 90px;
+    color: white;
+    font-weight: bolder;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+    top: 50%;
+    transform: translateY(-50%);
   }
 }
 .g-in {
