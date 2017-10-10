@@ -100,6 +100,10 @@ export default {
     }
     this.socket.onmessage = async function(data) {
       if (data.data.length < 255) {
+        if (data.data == '') {
+          that.socket.send('get_names');
+          return;
+        }
         that.name = data.data;
         await that.showName();
         that.name = null;
