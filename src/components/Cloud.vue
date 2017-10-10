@@ -71,7 +71,7 @@ export default {
         for(let i = 0; i < json.data.imageUrls.length ; i++){
           json.data.imageUrls[i] = basePath + json.data.imageUrls[i]
         }
-        if(json.data.imageUrls.length < 15) {
+        if(json.data.imageUrls.length < 15 && json.data.imageUrls.length!=0) {
           that.photolist = json.data.imageUrls
           for (let i = json.data.imageUrls.length; i < 15 ;i++) {
             that.photolist[i] = json.data.imageUrls[temp]
@@ -80,27 +80,31 @@ export default {
         } else {
           that.photolist = json.data.imageUrls
         }
-        photoDom = document.querySelector('.m-back')
-        for(let i = 0; i < 15; i++) {
-          photoDom.innerHTML += 
-          `<div class="u-photo J_photo">
-            <div class="u-front">
-              <img src='${that.photolist[i]}'/>
-            </div>
-            <div class="u-back"></div>
-          </div> `
+        if(json.data.imageUrls.length!=0) {
+          photoDom = document.querySelector('.m-back')
+          for(let i = 0; i < 15; i++) {
+            photoDom.innerHTML += 
+            `<div class="u-photo J_photo">
+              <div class="u-front">
+                <img src='${that.photolist[i]}'/>
+              </div>
+              <div class="u-back"></div>
+            </div> `
+          }
         }
-        this.photoInterval = setInterval(() => {
-          this._getRandom(15, ROTATE_COUNT).map(function(id) {
-            return document.querySelectorAll('.J_photo')[id]
-          }).forEach(function(ele) {
-            ele.classList.add('rotate');
-            setTimeout(function() {
-              ele.classList.remove('rotate');
-            }, 5000);
-          })
-        }, 5000);
-     })   
+        // this.photoInterval = setInterval(() => {
+        //   this._getRandom(15, ROTATE_COUNT).map(function(id) {
+        //     return document.querySelectorAll('.J_photo')[id]
+        //   }).forEach(function(ele) {
+        //     ele.classList.add('rotate');
+        //     setTimeout(function() {
+        //       ele.classList.remove('rotate');
+        //     }, 5000);
+        //   })
+        // }, 5000);
+     }).catch((err) => {
+      console.log(err)
+    })
   },
   beforeDestroy: function() {
     clearInterval(this.photoInterval);
