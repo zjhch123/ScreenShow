@@ -50,9 +50,10 @@ export default {
     }
   },
   created: function() {
-    const ROTATE_COUNT = 6;
+    
   }, 
   mounted: function() {
+    const ROTATE_COUNT = 6;
     let that = this;
     let index;
     let photoDom
