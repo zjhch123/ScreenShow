@@ -26,7 +26,8 @@ export default {
     return {
       msg: 'Welcome to Your Vue.js App',
       saved: false,
-      img: null
+      img: null,
+      canClick: true
     }
   },
   methods: {
@@ -40,11 +41,13 @@ export default {
     },
 
     savePhoto: function() {
+      if (!this.canClick) return;
       let that = this
       let $Blob = that.getBlobBydataURI(that.img)
       var formData = new FormData();
       formData.append("file", $Blob ,"file_"+Date.parse(new Date())+".jpg"); 
       let body = formData
+      this.canClick = false;
       fetch(AjaxUrl.upload, {
         method: 'POST',
         body: body
@@ -61,8 +64,10 @@ export default {
           }, 200);
         }, 1000);
       })
+      this.canClick = true;
     },
     fBack: function() {
+      if (!this.canClick) return;
       router.push('/photo');
     }
   },
