@@ -1,7 +1,7 @@
 <template>
   <div class="c-cloud" :class="{back: back}" @click="fBack">
     <div class="u-mask"></div>
-    <div class="m-back">
+    <!-- <div class="m-back">
       <div class="u-photo J_photo">
         <div class="u-front">
           <img src="../assets/p6temp/1.jpg"/>
@@ -92,11 +92,19 @@
         </div>
         <div class="u-back"></div>
       </div>
+    </div> -->
+    <div class="m-back">
+      <div v-for="photo in photolist" class="u-photo J_photo">
+        <div class="u-front">
+          <img :src="photo"/>
+        </div>
+        <div class="u-back"></div>
+      </div>
     </div>
     <div class="m-front">
       <div class="m-content">
         <div class="u-qr">
-          <img src="../assets/t_qr.png"/>
+          <img :src="QRcode"/>
         </div>
         <div class="u-title">
           <p>扫一扫</p>
@@ -108,14 +116,16 @@
 </template>
 <script>
 import router from '../router';
-import {AjaxUrl} from '../config';
+import {basePath, AjaxUrl} from '../config';
 
 export default {
   name: 'Cloud',
   data () {
     return {
       back: false,
-      photoInterval: 0
+      photoInterval: 0,
+      photolist:[],
+      QRcode:''
     }
   },
   methods: {
@@ -139,6 +149,7 @@ export default {
   },
   created: function() {
     const ROTATE_COUNT = 6;
+    let that = this;
     this.photoInterval = setInterval(() => {
       this._getRandom(15, ROTATE_COUNT).map(function(id) {
         return document.querySelectorAll('.J_photo')[id]
@@ -160,6 +171,8 @@ export default {
         return response.json();
       }).then((json) => {
         console.log(json)
+        that.QRcode = basePath + '/' + json.data.QRCode
+        that.photolist = json.data.imageUrls
     }) 
   }, 
   beforeDestroy: function() {
