@@ -19,7 +19,7 @@
           <div class="u-circle"></div>
         </div>
         <div class="u-inner" :class='{showText: showText, hideText: hideText}'>
-          <p :style="{fontSize:fontSize}">{{greeting}}</p>
+          <p :style="{fontSize:fontSize}" v-html="greeting"></p>
         </div>
       </div>
       <div class="m-btn-group">
@@ -71,7 +71,7 @@ export default {
           this.setMsg('您好');
         }, 1000);
         setTimeout(() => {
-          this.setMsg(that.name.split(' ').join('<br/>'));
+          this.setMsg(that.name.trim().split(' ').join('<br/>'));
         }, 2500);
         setTimeout(() => {
           this.setMsg('请入座');
@@ -98,6 +98,10 @@ export default {
     }
     this.socket.onmessage = async function(data) {
       if (data.data.length < 255) {
+        if (data.data == '') {
+          that.socket.send('get_names');
+          return;
+        }
         that.name = data.data;
         await that.showName();
         that.name = null;
