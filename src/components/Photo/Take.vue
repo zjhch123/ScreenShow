@@ -106,17 +106,17 @@ export default {
 @keyframes flash {
   0% {
     width: 1080px;
-    height: 1620px;
+    height: 1920px;
     opacity: 0;
   }
   50% {
     width: 1080px;
-    height: 1620px;
+    height: 1920px;
     opacity: 1;
   }
   100% {
     width: 1080px;
-    height: 1620px;
+    height: 1920px;
     opacity: 0;
   }
 }
@@ -155,7 +155,7 @@ export default {
     animation: fadeIn .8s;
   }
   .u-title {
-    margin-top: 65px;
+    margin-top: 120px;
     font-size: 56px;
     color: white;
     .icon {
@@ -177,7 +177,7 @@ export default {
     position: relative;
     width: 1080px;
     height: 1080px;
-    margin: 55px 0 80px;
+    margin: 80px 0 120px;
     .u-inner, .u-border {
       position: absolute;
       left: 0;

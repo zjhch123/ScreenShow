@@ -177,7 +177,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: 370px;
+    top: 470px;
     width: 600px;
     height: 600px;
     margin-left: auto;
@@ -229,7 +229,7 @@ export default {
     font-size: 0;
     position: absolute;
     z-index: 3;
-    top: 1300px;
+    top: 1500px;
     left: 0;
     right: 0;
     text-align: center;

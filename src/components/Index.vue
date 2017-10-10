@@ -158,44 +158,44 @@ export default {
   }
   .m-photo {
     background-image: url('../assets/p1-ball1.png');
-    width: 376px;
-    height: 375px;
-    font-size: 40px;
+    width: 405px;
+    height: 404px;
+    font-size: 49px;
     right: 140px;
-    top: 295px;
+    top: 365px;
     .icon {
       background-image: url('../assets/p1-photo.png');
-      width: 124px;
-      height: 97px;
+      width: 144px;
+      height: 114px;
       margin-bottom: 8px;
     }
   }
   .m-face {
     background-image: url('../assets/p1-ball2.png');
-    width: 512px;
-    height: 510px;
-    font-size: 44px;
+    width: 557px;
+    height: 556px;
+    font-size: 54px;
     left: 100px;
-    top: 643px;
+    top: 770px;
     .icon {
       background-image: url('../assets/p1-face.png');
-      width: 160px;
-      height: 160px;
-      margin-bottom: 18px;
+      width: 185px;
+      height: 185px;
+      margin-bottom: 24px;
     }
   }
   .m-cloud {
     background-image: url('../assets/p1-ball3.png');
-    width: 377px;
-    height: 380px;
-    font-size: 40px;
-    right: 170px;
-    bottom: 120px;
+    width: 403px;
+    height: 405px;
+    font-size: 49px;
+    right: 127px;
+    bottom: 170px;
     .icon {
       background-image: url('../assets/p1-cloud.png');
-      width: 97px;
-      height: 97px;
-      margin-bottom: 12px;
+      width: 112px;
+      height: 112px;
+      margin-bottom: 22px;
     }
   }
 }

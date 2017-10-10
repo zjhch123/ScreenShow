@@ -198,7 +198,7 @@ export default {
 .m-back {
   animation: fadeIn .4s;
   font-size: 0;
-  padding: 24px 65px;
+  padding: 80px 30px;
   text-align: justify;
   box-sizing: border-box;
   pointer-events: none;
@@ -210,10 +210,10 @@ export default {
     display: inline-block;
   }
   .u-photo {
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     display: inline-block;
-    width: 290px;
-    height: 290px;
+    width: 322px;
+    height: 322px;
     backface-visibility: hidden;
     position: relative;
     transform-style:preserve-3d;
@@ -231,9 +231,12 @@ export default {
       z-index: 2;
       transition: transform .4s .4s linear;
       img {
-        position: relative;
-        width: 100%;
+        position: absolute;
+        height: 100%;
         display: block;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
       }
     }
     .u-back {
@@ -276,18 +279,18 @@ export default {
     pointer-events: none;
   }
   .u-qr {
-    margin-top: 123px;
+    margin-top: 133px;
     background-color: white;
     padding: 8px;
     display: inline-block;
     img {
       display: block;
-      width: 290px;
-      height: 290px;
+      width: 322px;
+      height: 322px;
     }
   }
   .u-title {
-    font-size: 41px;
+    font-size: 49px;
     color: #3df6ff;
     font-weight: bold;
   }
