@@ -72,7 +72,7 @@ export default {
             this.setMsg('您好');
           }, 1000);
           setTimeout(() => {
-            this.setMsg(that.name.split(',').join('<br/>'), '50px');
+            this.setMsg(that.name.split(',').join('<br/>'));
           }, 2800);
           setTimeout(() => {
             this.setMsg('请入座');
@@ -96,7 +96,7 @@ export default {
     let image = document.querySelector('.J-image')
     this.socket.onopen= function(){
         that.socket.send('get_names');
-        that.socket.send('get_frame_1080_1920');
+        that.socket.send('get_frame_720_1280');
     }
     this.socket.onmessage = async function(data) {
       if (data.data.length < 255) {
@@ -106,7 +106,7 @@ export default {
         that.socket.send('get_names');
       } else {
         image.src = data.data;
-        that.socket.send('get_frame_1080_1920');
+        that.socket.send('get_frame_720_1280');
       }
     }
   },
