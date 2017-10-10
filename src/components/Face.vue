@@ -19,7 +19,7 @@
           <div class="u-circle"></div>
         </div>
         <div class="u-inner" :class='{showText: showText, hideText: hideText}'>
-          <p :style="{fontSize:fontSize}">{{greeting}}</p>
+          <p :style="{fontSize:fontSize}" v-html="greeting"></p>
         </div>
       </div>
       <div class="m-btn-group">
@@ -68,22 +68,20 @@ export default {
       let that = this
       return new Promise((res, rej) => {
         setTimeout(() => {
-          setTimeout(() => {
-            this.setMsg('您好');
-          }, 1000);
-          setTimeout(() => {
-            this.setMsg(that.name.split(',').join('<br/>'));
-          }, 2800);
-          setTimeout(() => {
-            this.setMsg('请入座');
-          }, 6000);
-          setTimeout(() => {
-            this.setMsg('欢迎您');
-          }, 8000);
-          setTimeout(() => {
-            res('OK');
-          }, 9000);
-        }, 2000);
+          this.setMsg('您好');
+        }, 1000);
+        setTimeout(() => {
+          this.setMsg(that.name.trim().split(' ').join('<br/>'));
+        }, 2500);
+        setTimeout(() => {
+          this.setMsg('请入座');
+        }, 4500);
+        setTimeout(() => {
+          this.setMsg('欢迎您');
+        }, 6000);
+        setTimeout(() => {
+          res('OK');
+        }, 7000);
       })
     }
   },
