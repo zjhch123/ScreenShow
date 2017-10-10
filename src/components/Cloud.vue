@@ -47,6 +47,13 @@ export default {
       setTimeout(() => {
         router.push('/index');
       }, 1200);
+    },
+    getUrlParam: function(_str, _name) {
+      let self = this;
+      let _reg = new RegExp('(^|&|\\?)' + _name + '=([^&]*)(&|$)'),
+          _r = _str.replace(/script|%22|%3E|%3C|'|"|>|<|\\/g,'_').match(_reg);
+
+      if (_r != null) return decodeURIComponent(_r[2]); return '';
     }
   },
   created: function() {
@@ -57,13 +64,14 @@ export default {
     let index;
     let photoDom
     let temp = 0
+    let topic_id = that.getUrlParam(window.location.search, 'id').split('/')[0] || 15
     fetch(AjaxUrl.cloud, {
         method: 'POST',
         headers: {
           "Content-type": "application/x-www-form-urlencoded"
         },
         dataType: 'json',
-        body: 'topic_id=8'
+        body: 'topic_id=' + topic_id
       }).then(function (response) {
         return response.json();
       }).then((json) => {
