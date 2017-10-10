@@ -58,10 +58,10 @@ export default {
       let that = this
       let image = document.querySelector('.J-image')
       image.onload = function() {
-        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame_1080_1080')
+        that.pic == true ? that.upload(image.src) : that.socket.send('get_frame_720_720')
       }
       this.socket.onopen = function(){
-          that.socket.send('get_frame_1080_1080');
+          that.socket.send('get_frame_720_720');
       }
       this.socket.onmessage = function(data){
           if(data.data.length<256){
