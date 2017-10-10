@@ -1,6 +1,11 @@
 <template>
   <div class="c-photo" :class="{back: back}">
     <div class="u-flash" :class="{take: take}"></div>
+    <div class="m-ready" :class="{show: ready}">
+      <p class="three u-number">3</p>
+      <p class="two u-number">2</p>
+      <p class="one u-number">1</p>
+    </div>
     <div class="g-in">
       <div class="u-title">
         <label class="icon"></label><span class="title f-shadow">现场拍照</span>
@@ -30,6 +35,7 @@ export default {
       back: false,
       take: false,
       pic: false,
+      ready: false,
       socket: null
     }
   },
@@ -41,11 +47,15 @@ export default {
       }, 1000);
     },
     fSave: function() {
-      this.take = true;
-      this.pic = true;
+      this.ready = true;
       setTimeout(() => {
-        router.push('/photo/save');
-      }, 500);
+        this.take = true;
+        this.pic = true;
+        setTimeout(() => {
+          router.push('/photo/save');
+        }, 500);
+        // 倒计时是3s，实际上不是3s，是4.5s
+      }, 5500);
     },
     upload(img) {
       localStorage.setItem('img',img)
@@ -122,6 +132,18 @@ export default {
     opacity: 0;
   }
 }
+@keyframes numberShow {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) scale(1.3);
+  }
+  100% {
+    opacity: 0;
+  }
+}
 .c-photo {
   position: relative;
   width: 100%;
@@ -144,6 +166,42 @@ export default {
   z-index: 999;
   &.take {
     animation: flash .4s ease-in;
+  }
+}
+.m-ready {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(-50%);
+  z-index: 1000;
+  color: white;
+  text-align: center;
+  .u-number {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 400px;
+    font-weight: bolder;
+    display: none;
+  }
+  &.show {
+    .three {
+      animation: numberShow 1.5s 1s;
+      animation-fill-mode: both;
+      display: block;
+    }
+    .two {
+      animation: numberShow 1.5s 2.5s;
+      animation-fill-mode: both;
+      display: block;
+    }
+    .one {
+      animation: numberShow 1.5s 4s;
+      animation-fill-mode: both;
+      display: block;
+    }
   }
 }
 .g-in {
