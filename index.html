@@ -10,8 +10,6 @@
   </body>
   <script type="text/javascript">
   document.oncontextmenu=function(e){return false;}
-  document.body.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-  });
+  document.onclick=function(e){e.preventDefault();return false;}
   </script>  
 </html>
