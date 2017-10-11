@@ -1,6 +1,6 @@
 <!DOCTYPE html><html><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,user-scalable=no"><link href=/static/css/app.98730075c229cd5521a16de41e31229e.css rel=stylesheet></head><body onselectstart="return false"><div id=app></div><script type=text/javascript src=/static/js/manifest.d35ba3abdcb5fa75cb1a.js></script><script type=text/javascript src=/static/js/vendor.5d2c8884ea30d8b367c7.js></script><script type=text/javascript src=/static/js/app.7ebcea1963745e0d5c82.js></script></body><script type=text/javascript>document.oncontextmenu=function(e){return false;}
-  document.body.addEventListener('touchstart', function(e) {
+  document.addEventListener('touchstart', function(e) {
     if (e.targetTouches.length > 1) {
       e.preventDefault();
     }
-  })</script></html>
+  }, {passive: false})</script></html>
