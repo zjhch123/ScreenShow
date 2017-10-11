@@ -76,6 +76,7 @@ export default {
         return response.json();
       }).then((json) => {
         that.QRcode = !!json.data.QRCode ? basePath + '/' + json.data.QRCode : '';
+        json.data.imageUrls = json.data.imageUrls.reverse();
         for(let i = 0; i < json.data.imageUrls.length ; i++){
           json.data.imageUrls[i] = basePath + json.data.imageUrls[i]
         }
