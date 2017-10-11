@@ -80,24 +80,32 @@ export default {
     opacity: 1;
   }
 }
+@keyframes switch {
+  from {
+    transform: translateX(1080px);
+  }
+  to {
+    transform: translateX(-1080px);
+  }
+}
 @keyframes floatBall {
   0% {
-    transform: translate3d(-2%,0,-10px);
+    transform: translate3d(-1%,0,-10px);
   }
   20% {
-   transform: translate3d(-3%,-4%, -10px) scale(.95); 
+   transform: translate3d(-2%,-3%, -10px) scale(.95); 
   }
   40% {
    transform: translate3d(0%,-2%, -10px);  
   }
   60% {
-   transform: translate3d(5%,-3%, -10px) scale(1.05);  
+   transform: translate3d(1%,-3%, -10px) scale(1.05);  
   }
   80% {
    transform: translate3d(2%, 0%, -10px);  
   }
   100% {
-   transform: translate3d(5%,4%, -10px) scale(.98);  
+   transform: translate3d(3%,2%, -10px) scale(.98);  
   }
 }
 .leave {
@@ -150,11 +158,11 @@ export default {
   display: block;
   text-align: center;  
   color: white;
-  font-size: 35px;
+  font-size: 45px;
   bottom: 40px;
   left: 0;
   right: 0;
-  animation: fadeIn .8s;
+  animation: switch 10s .8s linear both infinite;
   transition: all .8s linear;
 }
 .g-in {
