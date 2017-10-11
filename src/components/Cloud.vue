@@ -26,7 +26,8 @@ export default {
     return {
       back: false,
       photoInterval: 0,
-      photolist:[],
+      photolist: [],
+      backPhotolist: [],
       QRcode:''
     }
   },
@@ -64,7 +65,7 @@ export default {
     let photoDom;
     let temp = 0;
     const ROTATE_COUNT = 6;
-    let topic_id = that.getUrlParam(window.location.search, 'id').split('/')[0] || 15
+    let topic_id = that.getUrlParam(window.location.search, 'id').split('/')[0] || 27
     fetch(AjaxUrl.cloud, {
         method: 'POST',
         headers: {
@@ -76,18 +77,11 @@ export default {
         return response.json();
       }).then((json) => {
         that.QRcode = !!json.data.QRCode ? basePath + '/' + json.data.QRCode : '';
-        json.data.imageUrls = json.data.imageUrls.reverse();
-        for(let i = 0; i < json.data.imageUrls.length ; i++){
-          json.data.imageUrls[i] = basePath + json.data.imageUrls[i]
-        }
-        if(json.data.imageUrls.length < 15 && json.data.imageUrls.length!=0) {
-          that.photolist = json.data.imageUrls
-          for (let i = json.data.imageUrls.length; i < 15 ;i++) {
-            that.photolist[i] = json.data.imageUrls[temp]
-            temp++
+        if(json.data.imageUrls.length != 0) { 
+          for(let i = 0; i < 15 ; i++){
+            that.photolist[i] = basePath + json.data.imageUrls[i%json.data.imageUrls.length]
           }
-        } else {
-          that.photolist = json.data.imageUrls
+          that.backPhotolist = JSON.parse(JSON.stringify(that.photolist)).reverse()
         }
         if(json.data.imageUrls.length!=0) {
           photoDom = document.querySelector('.m-back')
@@ -97,7 +91,9 @@ export default {
               <div class="u-front">
                 <img src='${that.photolist[i]}'/>
               </div>
-              <div class="u-back"></div>
+              <div class="u-back">
+                <img src='${that.backPhotolist[i]}'/>
+              </div>
             </div> `
           }
           this.photoInterval = setInterval(() => {
@@ -210,6 +206,14 @@ export default {
         transition: transform .4s linear;
         transform: rotate3d(1, 0, 0, -90deg);
         z-index: 1;
+        img {
+          position: absolute;
+          height: 100%;
+          display: block;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%) rotate(180deg);
+        }
       }
     }
     .u-photo {
