@@ -19,10 +19,20 @@
 
 <script>
 import fastclick from 'fastclick';
+import router from './router';
 export default {
   name: 'app',
   created: function() {
     fastclick.attach(document.body);
+    let timeoutToBack = setTimeout(() => {
+      router.push('/index');
+    }, 180 * 1000);
+    document.addEventListener('touchstart', function() {
+      clearTimeout(timeoutToBack);
+      timeoutToBack = setTimeout(() => {
+        router.push('/index');
+      }, 180 * 1000);
+    });
   }
 }
 </script>

@@ -233,7 +233,7 @@ export default {
     font-size: 0;
     position: absolute;
     z-index: 3;
-    top: 1500px;
+    top: 1420px;
     left: 0;
     right: 0;
     text-align: center;
