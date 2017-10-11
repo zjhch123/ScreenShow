@@ -2,6 +2,8 @@
   <div class="c-photo" :class="{back: back}">
     <div class="u-flash" :class="{take: take}"></div>
     <div class="m-ready" :class="{show: ready}">
+      <p class="five u-number">5</p>
+      <p class="four u-number">4</p>
       <p class="three u-number">3</p>
       <p class="two u-number">2</p>
       <p class="one u-number">1</p>
@@ -54,8 +56,8 @@ export default {
         setTimeout(() => {
           router.push('/photo/save');
         }, 500);
-        // 倒计时是3s，实际上不是3s，是4.5s
-      }, 5500);
+        // 倒计时是5s，实际上不是5s，是8.5s
+      }, 8500);
     },
     upload(img) {
       localStorage.setItem('img',img)
@@ -187,18 +189,28 @@ export default {
     display: none;
   }
   &.show {
-    .three {
+    .five {
       animation: numberShow 1.5s 1s;
       animation-fill-mode: both;
       display: block;
     }
-    .two {
+    .four {
       animation: numberShow 1.5s 2.5s;
       animation-fill-mode: both;
       display: block;
     }
-    .one {
+    .three {
       animation: numberShow 1.5s 4s;
+      animation-fill-mode: both;
+      display: block;
+    }
+    .two {
+      animation: numberShow 1.5s 5.5s;
+      animation-fill-mode: both;
+      display: block;
+    }
+    .one {
+      animation: numberShow 1.5s 7s;
       animation-fill-mode: both;
       display: block;
     }
@@ -215,7 +227,7 @@ export default {
     animation: fadeIn .8s;
   }
   .u-title {
-    margin-top: 90px;
+    margin-top: 60px;
     font-size: 56px;
     color: white;
     .icon {
@@ -237,7 +249,7 @@ export default {
     position: relative;
     width: 1080px;
     height: 1080px;
-    margin: 40px 0 90px;
+    margin: 60px 0 90px;
     .u-inner, .u-border {
       position: absolute;
       left: 0;
