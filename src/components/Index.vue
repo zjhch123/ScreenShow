@@ -31,6 +31,9 @@
         </a>
       </div>
     </div>
+    <div class="g-footer">
+      <p>2017博鳌国际干细胞&抗衰老高峰论坛</p>
+    </div>
   </div>
 </template>
 <script>
@@ -68,6 +71,35 @@ export default {
     opacity: 1;
   }
 }
+@keyframes fadeInReverse {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes floatBall {
+  0% {
+    transform: translate3d(-2%,0,-10px);
+  }
+  20% {
+   transform: translate3d(-3%,-4%, -10px) scale(.95); 
+  }
+  40% {
+   transform: translate3d(0%,-2%, -10px);  
+  }
+  60% {
+   transform: translate3d(5%,-3%, -10px) scale(1.05);  
+  }
+  80% {
+   transform: translate3d(2%, 0%, -10px);  
+  }
+  100% {
+   transform: translate3d(5%,4%, -10px) scale(.98);  
+  }
+}
 .leave {
   .g-title {
     opacity: 0;
@@ -75,6 +107,10 @@ export default {
   .g-in {
     animation: fadeIn .8s reverse;
     animation-fill-mode: forwards;
+  }
+  .g-footer {
+    opacity: 0;
+    transform: translateY(40px);
   }
 }
 .c-index {
@@ -107,6 +143,19 @@ export default {
     font-size: 44px;
     line-height: 60px;
   }
+}
+.g-footer {
+  position: absolute;
+  z-index: 99;
+  display: block;
+  text-align: center;  
+  color: white;
+  font-size: 35px;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  animation: fadeIn .8s;
+  transition: all .8s linear;
 }
 .g-in {
   position: absolute;
@@ -152,7 +201,7 @@ export default {
         margin-right: auto;
       }
     }
-    &:active {
+    &:active, &:hover {
       transform: scale(.9);
     }
   }
@@ -161,8 +210,9 @@ export default {
     width: 405px;
     height: 404px;
     font-size: 49px;
-    right: 140px;
-    top: 365px;
+    right: 120px;
+    top: 295px;
+    animation: floatBall 7s linear alternate infinite;
     .icon {
       background-image: url('../assets/p1-photo.png');
       width: 144px;
@@ -176,7 +226,8 @@ export default {
     height: 556px;
     font-size: 54px;
     left: 100px;
-    top: 770px;
+    top: 650px;
+    animation: floatBall 10s linear alternate infinite;
     .icon {
       background-image: url('../assets/p1-face.png');
       width: 185px;
@@ -190,7 +241,8 @@ export default {
     height: 405px;
     font-size: 49px;
     right: 127px;
-    bottom: 170px;
+    bottom: 300px;
+    animation: floatBall 9s linear alternate infinite;
     .icon {
       background-image: url('../assets/p1-cloud.png');
       width: 112px;

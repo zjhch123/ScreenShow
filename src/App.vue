@@ -18,8 +18,12 @@
 </template>
 
 <script>
+import fastclick from 'fastclick';
 export default {
-  name: 'app' 
+  name: 'app',
+  created: function() {
+    fastclick.attach(document.body);
+  }
 }
 </script>
 <style scoped lang="scss">
