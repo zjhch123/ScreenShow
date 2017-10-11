@@ -167,7 +167,14 @@ export default {
       .u-inner {
         width: 100%;
         height: 100%;
+        overflow: auto;
+        padding: 5px;
+        box-sizing: border-box;
+        &::-webkit-scrollbar {
+          display: none;
+        }
         img {
+          display: block;
           width: 100%;
         }
       }

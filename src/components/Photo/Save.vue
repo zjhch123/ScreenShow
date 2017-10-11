@@ -8,7 +8,7 @@
         <div class="u-border"></div>
         <div class="m-container">
           <div class="u-inner">
-            <img :src="img"/>
+            <canvas width="787" height="2146" class="demo J_demo"/>
           </div>
         </div>
       </div>
@@ -34,42 +34,35 @@ export default {
     }
   },
   methods: {
-    getBlobBydataURI: function (dataURI,type) { 
-      var binary = atob(dataURI.split(',')[1]); 
-      var array = []; 
-      for(var i = 0; i < binary.length; i++) { 
-        array.push(binary.charCodeAt(i)); 
-      } 
-      return new Blob([new Uint8Array(array)], {type:type }); 
-    },
-
     savePhoto: function() {
       let that = this
-      let $Blob = that.getBlobBydataURI(that.img)
-      var formData = new FormData();
-      formData.append("file", $Blob ,"file_"+Date.parse(new Date())+".jpg"); 
-      let body = formData
-      this.uploading = true;
-      this.msg = '上传中,请稍后..';
-      fetch(AjaxUrl.upload, {
-        method: 'POST',
-        body: body
-      }).then(function (response) {
-        return response.json();
-      }).then((data)=> {
-        localStorage.setItem('imageurl', basePath + data.data.imageurl)
-        localStorage.setItem('QRcode', basePath + '/' + data.data.QRcode)
-        setTimeout(() => {
-          this.saved = true;
+      const canvas = document.querySelector('.J_demo');
+      canvas.toBlob(function($Blob) {
+        let formData = new FormData();
+        formData.append("file", $Blob ,"file_"+Date.parse(new Date())+".jpg"); 
+        let body = formData
+        that.uploading = true;
+        that.msg = '上传中,请稍后..';
+        fetch(AjaxUrl.upload, {
+          method: 'POST',
+          body: body
+        }).then(function (response) {
+          return response.json();
+        }).then((data)=> {
+          localStorage.setItem('imageurl', basePath + data.data.imageurl)
+          localStorage.setItem('QRcode', basePath + '/' + data.data.QRcode)
           setTimeout(() => {
-            router.push('/photo/share');
-          }, 200);
-        }, 1000);
-      }).catch((err) => {
-        this.msg = '上传失败,请重试';
-        setTimeout(() => {
-          this.uploading = false;
-        }, 1500);
+            that.saved = true;
+            setTimeout(() => {
+              router.push('/photo/share');
+            }, 200);
+          }, 1000);
+        }).catch((err) => {
+          that.msg = '上传失败,请重试';
+          setTimeout(() => {
+            that.uploading = false;
+          }, 1500);
+        });
       });
     },
     fBack: function() {
@@ -77,7 +70,22 @@ export default {
     }
   },
   created: function() {
-    this.img = localStorage.getItem('img')
+  },
+  mounted: function() {
+    const canvas = document.querySelector('.J_demo');
+    const ctx = canvas.getContext('2d');
+    this.img = localStorage.getItem('img');
+    const bgImage = new Image();
+    const photoImage = new Image();
+    bgImage.onload = function() {
+      ctx.drawImage(bgImage, 0, 0);
+    }
+    photoImage.onload = function() {
+      ctx.drawImage(photoImage, 34, 288, 720, 720);
+    }
+    bgImage.src = require('../../assets/demo.png');
+    photoImage.src = localStorage.getItem('img') || '';
+    // photoImage.src = require('../../assets/p6temp/5.jpg'); // 测试数据
   },
   destroyed: function() {
     localStorage.removeItem('img')
@@ -195,9 +203,19 @@ export default {
       }
       .u-inner {
         width: 100%;
-        img {
+        position: relative;
+        .demo {
           display: block;
           width: 100%;
+        }
+        .photo {
+          position: absolute;
+          top: 332px;
+          height: 829px;
+          width: 829px;
+          z-index: 99;
+          left: 50%;
+          transform: translateX(-50%);
         }
       }
     }
