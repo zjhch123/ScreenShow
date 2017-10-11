@@ -170,7 +170,8 @@ export default {
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 1080px;
+    z-index: 8;
     img {
       width: 100%;
       height: 100%;
@@ -181,11 +182,12 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: 420px;
+    top: 235px;
     width: 600px;
     height: 600px;
     margin-left: auto;
     margin-right: auto;
+    z-index: 9;
     .u-inner {
       animation: transformIn .8s .8s;
       animation-fill-mode: both;
