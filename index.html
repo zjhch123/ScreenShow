@@ -10,10 +10,10 @@
   </body>
   <script type="text/javascript">
   document.oncontextmenu=function(e){return false;}
-  document.body.addEventListener('touchstart', function(e) {
+  document.addEventListener('touchstart', function(e) {
     if (e.targetTouches.length > 1) {
       e.preventDefault();
     }
-  })
+  }, {passive: false})
   </script> 
 </html>
