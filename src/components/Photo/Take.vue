@@ -215,7 +215,7 @@ export default {
     animation: fadeIn .8s;
   }
   .u-title {
-    margin-top: 120px;
+    margin-top: 90px;
     font-size: 56px;
     color: white;
     .icon {
@@ -237,7 +237,7 @@ export default {
     position: relative;
     width: 1080px;
     height: 1080px;
-    margin: 80px 0 120px;
+    margin: 40px 0 90px;
     .u-inner, .u-border {
       position: absolute;
       left: 0;

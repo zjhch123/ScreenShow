@@ -139,7 +139,7 @@ export default {
     display: block;
   }
   p {
-    font-size: 90px;
+    font-size: 75px;
     color: white;
     font-weight: bolder;
     position: absolute;

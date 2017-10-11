@@ -181,7 +181,7 @@ export default {
     position: absolute;
     left: 0;
     right: 0;
-    top: 470px;
+    top: 420px;
     width: 600px;
     height: 600px;
     margin-left: auto;
