@@ -171,6 +171,7 @@ export default {
     right: 0;
     height: 1080px;
     z-index: 8;
+    transform: rotateY(180deg);
     img {
       width: 100%;
       height: 100%;

@@ -270,6 +270,7 @@ export default {
       background-color: black;
       overflow: hidden;
       img {
+        transform: rotateY(180deg);
         width: 100%;
         display: block;
       }
