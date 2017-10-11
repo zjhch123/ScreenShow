@@ -11,6 +11,7 @@
   <script type="text/javascript">
   document.oncontextmenu=function(e){return false;}
   document.addEventListener('touchstart', function(e) {
+    console.log(e)
     if (e.touches.length > 1) {
       e.preventDefault();
     }
