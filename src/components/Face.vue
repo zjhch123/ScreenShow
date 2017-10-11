@@ -108,7 +108,7 @@ export default {
         that.socket.send('get_names');
       } else {
         image.src = data.data;
-        that.socket.send('get_frame_720_1280');
+        that.socket.send('get_frame_650_650');
       }
     }
   },
