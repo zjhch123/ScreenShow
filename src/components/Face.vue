@@ -94,7 +94,7 @@ export default {
     let image = document.querySelector('.J-image')
     this.socket.onopen= function(){
         that.socket.send('get_names');
-        that.socket.send('get_frame_720_1280');
+        that.socket.send('get_frame_650_650');
     }
     this.socket.onmessage = async function(data) {
       if (data.data.length < 255) {
@@ -235,7 +235,7 @@ export default {
     font-size: 0;
     position: absolute;
     z-index: 3;
-    top: 1420px;
+    top: 1200px;
     left: 0;
     right: 0;
     text-align: center;
