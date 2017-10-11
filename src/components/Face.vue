@@ -115,7 +115,6 @@ export default {
   destroyed: function() {
     this.socket.close()
   }
-  
 }
 </script>
 <style scoped lang="scss">
