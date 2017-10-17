@@ -67,27 +67,16 @@ export default {
     showName: function() {
       let that = this
       return new Promise((res, rej) => {
-        setTimeout(() => {
-          this.setMsg('您好');
-        }, 1000);
-        setTimeout(() => {
-          this.setMsg(that.name.trim().split(' ').join('<br/>'));
-        }, 2500);
-        setTimeout(() => {
-          this.setMsg('请入座');
-        }, 4500);
-        setTimeout(() => {
-          this.setMsg('欢迎您');
-        }, 6000);
+        this.setMsg(that.name.trim().split(' ').join('<br/>'));
         setTimeout(() => {
           res('OK');
-        }, 7000);
+        }, 600);
       })
     }
   },
   created: function() {
     this.socket = new WebSocket(wsIp);
-    this.setMsg('欢迎您');
+    this.setMsg('欢迎光临');
   },
   mounted: function() {
     let that = this;
@@ -99,12 +88,19 @@ export default {
     this.socket.onmessage = async function(data) {
       if (data.data.length < 255) {
         if (data.data == '') {
+          that.name = null;
+          this.setMsg('欢迎光临');
+          setTimeout(() => {
+            that.socket.send('get_names');
+          }, 600);
+          return;
+        }
+        if (that.name == data.data) {
           that.socket.send('get_names');
           return;
         }
         that.name = data.data;
-        await that.showName();
-        that.name = null;
+        await that.showName();        
         that.socket.send('get_names');
       } else {
         image.src = data.data;
