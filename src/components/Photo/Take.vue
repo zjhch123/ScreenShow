@@ -180,6 +180,7 @@ export default {
   z-index: 1000;
   color: white;
   text-align: center;
+  pointer-events: none;
   .u-number {
     position: absolute;
     left: 50%;
