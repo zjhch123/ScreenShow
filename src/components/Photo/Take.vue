@@ -280,6 +280,7 @@ export default {
     &.hidden {
       transform: translateY(20px);
       opacity: 0;
+      pointer-events: none;
     }
     transition: all .8s;
     font-size: 0;
