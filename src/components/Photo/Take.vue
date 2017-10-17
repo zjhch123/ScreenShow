@@ -2,7 +2,7 @@
   <div class="c-photo" :class="{back: back}">
     <div class="u-flash" :class="{take: take}"></div>
     <div class="m-ready" :class="{show: ready}">
-      <p class="five u-number">5</p>
+      <!-- <p class="five u-number">5</p> -->
       <p class="four u-number">4</p>
       <p class="three u-number">3</p>
       <p class="two u-number">2</p>
@@ -57,7 +57,7 @@ export default {
           router.push('/photo/save');
         }, 500);
         // 倒计时是5s，实际上不是5s，是8.5s
-      }, 8500);
+      }, 7000);
     },
     upload(img) {
       localStorage.setItem('img',img)
@@ -189,28 +189,28 @@ export default {
     display: none;
   }
   &.show {
-    .five {
+    /*.five {
+      animation: numberShow 1.5s 1s;
+      animation-fill-mode: both;
+      display: block;
+    }*/
+    .four {
       animation: numberShow 1.5s 1s;
       animation-fill-mode: both;
       display: block;
     }
-    .four {
+    .three {
       animation: numberShow 1.5s 2.5s;
       animation-fill-mode: both;
       display: block;
     }
-    .three {
+    .two {
       animation: numberShow 1.5s 4s;
       animation-fill-mode: both;
       display: block;
     }
-    .two {
-      animation: numberShow 1.5s 5.5s;
-      animation-fill-mode: both;
-      display: block;
-    }
     .one {
-      animation: numberShow 1.5s 7s;
+      animation: numberShow 1.5s 5.5s;
       animation-fill-mode: both;
       display: block;
     }
